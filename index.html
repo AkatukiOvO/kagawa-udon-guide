@@ -33,13 +33,14 @@
 }
 
 .navbar.scrolled .logo,
-.navbar.scrolled .nav-links a {
+.navbar.scrolled .nav-links a,
+.navbar.scrolled .theme-toggle {
   color: #222 !important;
 }
 
 
 .logo {
-  color: white;
+  color: #fff;
   font-weight: 700;
   font-size: 18px;
   letter-spacing: .03em;
@@ -51,7 +52,7 @@
 }
 
 .nav-links a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
   transition: .25s ease;
@@ -59,6 +60,28 @@
 
 .nav-links a:hover {
   opacity: .7;
+}
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #222;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px) scale(1.06);
+  background: rgba(255,255,255,.28);
+}
+
+.navbar.scrolled .theme-toggle {
+  color: #222;
+  border: 1px solid rgba(0,0,0,.12);
 }
     
     header {
@@ -100,6 +123,11 @@ body {
     transform: translateY(0);
   }
 }
+body.theme-transition header,
+body.theme-transition main,
+body.theme-transition footer {
+  animation: pageFade .75s ease;
+}
       font-size: 14px;
       margin-bottom: 18px;
     }
@@ -115,6 +143,40 @@ body {
       max-width: 760px;
     }
     main { max-width: 1180px; margin: 0 auto; padding: 48px 20px 72px; }
+    .intro-section {
+  max-width: 980px;
+  margin: 0 auto 36px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(133,92,43,.12);
+  border-radius: 24px;
+  animation: pageFade 1s ease;
+}
+
+.intro-badge {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.05);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.intro-title {
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+}
+
+.intro-text {
+  max-width: 860px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #555;
+  margin: 0;
+}
     .section-title { margin-bottom: 18px; }
     .section-title h2 { font-size: 30px; margin: 0 0 8px; }
     .section-title p { color: #666; margin: 0; line-height: 1.7; }
@@ -183,6 +245,29 @@ body {
     .info-card h3 { margin: 0 0 10px; font-size: 24px; }
     .info-card p { line-height: 1.8; color: #555; }
     .shop-list { display: grid; gap: 16px; margin-top: 18px; }
+    .random-btn {
+  border: none;
+  width: 100%;
+  padding: 14px 18px;
+  margin: 18px 0 14px;
+  border-radius: 18px;
+  background: #111;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(0,0,0,.16);
+  transition: all .25s ease;
+}
+
+.random-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.22);
+}
+
+body.dark .random-btn {
+  background: #fff;
+  color: #111;
+}
     .filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -191,6 +276,9 @@ body {
 }
 
 .filter-btn {
+  opacity: 0;
+transform: translateX(60px);
+animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   border: 1px solid rgba(133,92,43,.16);
   background: #fff8ef;
   color: #7a4b13;
@@ -199,6 +287,29 @@ body {
   font-weight: 700;
   cursor: pointer;
   transition: all .25s ease;
+}
+.filter-btn:nth-child(1) { animation-delay: .03s; }
+.filter-btn:nth-child(2) { animation-delay: .08s; }
+.filter-btn:nth-child(3) { animation-delay: .13s; }
+.filter-btn:nth-child(4) { animation-delay: .18s; }
+.filter-btn:nth-child(5) { animation-delay: .23s; }
+.filter-btn:nth-child(6) { animation-delay: .28s; }
+.filter-btn:nth-child(7) { animation-delay: .33s; }
+.filter-btn:nth-child(8) { animation-delay: .38s; }
+.filter-btn:nth-child(9) { animation-delay: .43s; }
+.filter-btn:nth-child(10) { animation-delay: .48s; }
+.filter-btn:nth-child(11) { animation-delay: .53s; }
+.filter-btn:nth-child(12) { animation-delay: .58s; }
+@keyframes filterSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .filter-btn:hover {
@@ -284,6 +395,25 @@ body {
     .shop-content p { margin: 0 0 10px; color: #666; line-height: 1.6; font-size: 14px; }
     .badge { display: inline-block; background: #f4e3c6; color: #7a4b13; padding: 5px 9px; border-radius: 999px; font-size: 12px; margin-right: 4px; }
     .detail { margin-top: 24px; padding-top: 22px; border-top: 1px solid #eee; }
+    .inline-detail {
+  animation: detailExpand .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+  overflow: hidden;
+}
+
+@keyframes detailExpand {
+  from {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.96);
+    max-height: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 900px;
+  }
+}
     .detail img { width: 100%; height: 210px; object-fit: cover; border-radius: 18px; margin-bottom: 16px; }
     .detail dl { display: grid; grid-template-columns: 92px 1fr; gap: 10px 12px; margin: 16px 0; }
     .detail dt { font-weight: 700; color: #7a4b13; }
@@ -295,18 +425,22 @@ body {
 }
 
 .inline-detail {
-  animation: detailOpen .35s cubic-bezier(0.22, 1, 0.36, 1);
-  transform-origin: top;
+  animation: detailExpand .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+transform-origin: top center;
+overflow: hidden;
 }
 
-@keyframes detailOpen {
+@@keyframes detailExpand {
   from {
     opacity: 0;
-    transform: translateY(-12px) scaleY(0.96);
+    transform: translateY(-18px) scale(0.96);
+    max-height: 0;
   }
+
   to {
     opacity: 1;
-    transform: translateY(0) scaleY(1);
+    transform: translateY(0) scale(1);
+    max-height: 900px;
   }
 }
     .button {
@@ -420,6 +554,14 @@ line-height: 1;
 }
 
 @media (max-width: 768px) {
+.intro-title {
+  font-size: 34px;
+}
+
+.intro-text {
+  font-size: 15px;
+  line-height: 1.9;
+}
   .back-to-top {
     
     right: 18px;
@@ -455,6 +597,59 @@ line-height: 1;
     height: 44px;
     font-size: 20px;
   }
+}
+body.dark .logo,
+body.dark .nav-links a,
+body.dark .theme-toggle {
+  color: #fff !important;
+}
+body.dark {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+body.dark .info-card,
+body.dark .shop-card,
+body.dark .about-card,
+body.dark .map-card {
+  background: #1e1e1e;
+  color: #f5f5f5;
+  border-color: rgba(255,255,255,.08);
+}
+
+body.dark .shop-content p,
+body.dark .section-title p,
+body.dark .info-card p,
+body.dark .about-card p,
+body.dark .detail dd,
+body.dark .detail p,
+body.dark .story-item p {
+  color: #cfcfcf;
+}
+
+body.dark .story-item,
+body.dark .filter-btn {
+  background: #252525;
+  color: #f5f5f5;
+  border-color: rgba(255,255,255,.1);
+}
+
+body.dark .badge {
+  background: rgba(255,255,255,.12);
+  color: #f5f5f5;
+}
+body.dark .back-to-top {
+  background: rgba(255,255,255,.72);
+  color: #222;
+  border-color: rgba(255,255,255,.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+body.dark .button,
+body.dark .filter-btn.active {
+  background: #f5f5f5;
+  color: #111;
 }
     footer { text-align: center; color: #777; padding: 30px 16px; background: #fff; }
     @media (max-width: 880px) {
@@ -508,16 +703,30 @@ line-height: 1;
     height: 360px;
   }
 }
+body:not(.dark) .navbar.scrolled .logo,
+body:not(.dark) .navbar.scrolled .nav-links a,
+body:not(.dark) .navbar.scrolled .theme-toggle {
+  color: #222 !important;
+}
+
+body.dark .navbar .logo,
+body.dark .navbar .nav-links a,
+body.dark .navbar .theme-toggle {
+  color: #fff !important;
+}
   </style>
 </head>
 <body>
+ 
+</div>
   <nav class="navbar">
   <div class="logo">Kagawa Udon Guide</div>
   <div class="nav-links">
-   <a href="#map">Map</a>
-<a href="#shops">Shops</a>
-<a href="#about">About</a>
-  </div>
+  <a href="#map">Map</a>
+  <a href="#shops">Shops</a>
+  <a href="#about">About</a>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+</div>
 </nav>
   <header>
     <div class="hero">
@@ -550,41 +759,52 @@ line-height: 1;
       <aside class="info-card" id="shops">
         <h3 class="text-drop" style="animation-delay: .18s;">おすすめ店舗</h3>
         <p class="text-drop" style="animation-delay: .28s;">まずは3店舗だけに絞り、情報の見やすさと使いやすさを重視して作成しました。</p>
+        <button class="random-btn" onclick="randomPick()">🎲 今日のおすすめを選ぶ</button>
 <div class="filter-bar">
   <button class="filter-btn active" onclick="setFilter('all')">全部</button>
   <button class="filter-btn" onclick="setFilter('高松市内')">高松市内</button>
   <button class="filter-btn" onclick="setFilter('深夜営業')">深夜営業</button>
   <button class="filter-btn" onclick="setFilter('カレーうどん')">カレーうどん</button>
   <button class="filter-btn" onclick="setFilter('釜玉うどん')">釜玉うどん</button>
+  <button class="filter-btn" onclick="setFilter('初めての香川')">初めての香川</button>
+<button class="filter-btn" onclick="setFilter('観光客向け')">観光客向け</button>
+<button class="filter-btn" onclick="setFilter('地元感')">地元感</button>
+<button class="filter-btn" onclick="setFilter('駅近')">駅近</button>
+<button class="filter-btn" onclick="setFilter('車で行きやすい')">車で行きやすい</button>
+<button class="filter-btn" onclick="setFilter('行列店')">行列店</button>
+<button class="filter-btn" onclick="setFilter('セルフ式')">セルフ式</button>
 </div>
         <div class="shop-list" id="shopList"></div>
       </aside>
     </section>
 
   <section class="about-card" id="about">
-  <h2>Project Story</h2>
+  <h2>Why I Made This</h2>
   <div class="story-grid">
-    <div class="story-item">
-      <span>01</span>
-      <h3>背景</h3>
-      <p><p>香川大学で地域観光について学び、ゼミ活動ではうどん店の多言語メニュー作成にも関わりました。その経験から、外国人観光客がうどん店の場所・メニュー・特徴を一度に確認しづらいと感じました。</p></p>
-    </div>
-    <div class="story-item">
-      <span>02</span>
-      <h3>課題</h3>
-      <p>有名店の情報は多くありますが、観光客にとっては「どこにあるか」「何を食べればよいか」が分かりにくい場合があります。</p>
-    </div>
-    <div class="story-item">
-      <span>03</span>
-      <h3>工夫</h3>
-      <p>地図・店舗カード・おすすめメニューを一つの画面にまとめ、短時間で店を選べるようにしました。</p>
-    </div>
-    <div class="story-item">
-      <span>04</span>
-      <h3>今後</h3>
-      <p>今後は多言語表示、現在地からのルート検索、営業時間情報、混雑状況なども追加したいと考えています。</p>
-    </div>
+  <div class="story-item">
+    <span>01</span>
+    <h3>Background</h3>
+    <p>香川大学で地域観光について学び、ゼミ活動ではうどん店の多言語メニュー作成に関わりました。その経験から、外国人観光客向けに情報を分かりやすく整理する必要性を感じました。</p>
   </div>
+
+  <div class="story-item">
+    <span>02</span>
+    <h3>Problem</h3>
+    <p>うどん店の情報は多く存在しますが、観光客にとっては「場所」「おすすめメニュー」「店の特徴」を一度に比較しづらいという課題があります。</p>
+  </div>
+
+  <div class="story-item">
+    <span>03</span>
+    <h3>Solution</h3>
+    <p>地図、店舗カード、多言語説明、タグ検索を一つの画面にまとめ、短時間で自分に合う店を選べるようにしました。</p>
+  </div>
+
+  <div class="story-item">
+    <span>04</span>
+    <h3>Next Step</h3>
+    <p>今後は掲載店舗を増やし、実際の多言語メニュー情報、営業時間、価格帯、観光客向けのおすすめ度なども追加したいと考えています。</p>
+  </div>
+</div>
 </section>
   </main>
 <button class="back-to-top" onclick="scrollToTop()">↑</button>
@@ -639,12 +859,16 @@ line-height: 1;
     const detail = document.getElementById('detail');
 
     let selectedIndex = null;
-    let currentFilter = 'all';
+    let currentFilters = [];
 
 function renderList() {
-  const filteredShops = currentFilter === 'all'
-    ? shops
-    : shops.filter(shop => shop.tags.includes(currentFilter) || shop.area === currentFilter);
+  const filteredShops = currentFilters.length === 0
+  ? shops
+  : shops.filter(shop =>
+      currentFilters.every(filter =>
+        shop.tags.includes(filter) || shop.area === filter
+      )
+    );
 
   shopList.innerHTML = filteredShops.map((shop) => {
     const originalIndex = shops.indexOf(shop);
@@ -712,16 +936,69 @@ function showDetail(index) {
 }
 
 function setFilter(filter) {
-  currentFilter = filter;
   selectedIndex = null;
+
+  if (filter === 'all') {
+    currentFilters = [];
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    document.querySelector('.filter-btn').classList.add('active');
+  } else {
+    const allButton = document.querySelector('.filter-btn');
+    allButton.classList.remove('active');
+
+    if (currentFilters.includes(filter)) {
+      currentFilters = currentFilters.filter(item => item !== filter);
+      event.target.classList.remove('active');
+    } else {
+      currentFilters.push(filter);
+      event.target.classList.add('active');
+    }
+
+    if (currentFilters.length === 0) {
+      allButton.classList.add('active');
+    }
+  }
+
+  renderList();
+}
+function randomPick() {
+  const randomIndex = Math.floor(Math.random() * shops.length);
+
+ currentFilters = [];
+  selectedIndex = randomIndex;
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.classList.remove('active');
   });
 
-  event.target.classList.add('active');
+  document.querySelector('.filter-btn').classList.add('active');
 
   renderList();
+
+  const mapFrame = document.getElementById('mapFrame');
+  const mapCard = document.querySelector('.map-card');
+  const mapLoading = document.getElementById('mapLoading');
+
+  mapLoading.classList.add('show');
+
+  mapCard.classList.remove('map-changing');
+  void mapCard.offsetWidth;
+  mapCard.classList.add('map-changing');
+
+  mapFrame.src = shops[randomIndex].mapEmbed;
+
+  setTimeout(() => {
+    mapLoading.classList.remove('show');
+  }, 900);
+
+  const openedDetail = document.querySelector('.inline-detail');
+  if (openedDetail) {
+    openedDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
 function scrollToTop() {
   window.scrollTo({
@@ -740,11 +1017,42 @@ function revealStory() {
     }
   });
 }
+function toggleTheme() {
+  document.body.classList.remove('theme-transition');
+  void document.body.offsetWidth;
+
+  document.body.classList.toggle('dark');
+  document.body.classList.add('theme-transition');
+
+  const themeButton = document.querySelector('.theme-toggle');
+  if (document.body.classList.contains('dark')) {
+    themeButton.textContent = '☀️';
+  } else {
+    themeButton.textContent = '🌙';
+  }
+
+  setTimeout(() => {
+    document.body.classList.remove('theme-transition');
+  }, 800);
+}
 
 window.addEventListener('scroll', revealStory);
 
 revealStory();
+const navbar = document.querySelector('.navbar');
+
+function updateNavbarColor() {
+  if (window.scrollY > 320) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}
+
+window.addEventListener('scroll', updateNavbarColor);
+updateNavbarColor();
     renderList();
+    
   </script>
 </body>
 </html>
