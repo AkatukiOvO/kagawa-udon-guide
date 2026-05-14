@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kagawa Udon Guide</title>
+  <style>
+    * { box-sizing: border-box; }
+    html {
+  scroll-behavior: smooth;
+}
+    .navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92%, 1100px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: rgba(255,255,255,.10);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+.navbar.scrolled {
+  background: rgba(255,255,255,.75);
+  box-shadow: 0 12px 32px rgba(0,0,0,.12);
+}
+
+.navbar.scrolled .logo,
+.navbar.scrolled .nav-links a {
+  color: #222 !important;
+}
+
+
+.logo {
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .03em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: .25s ease;
+}
+
+.nav-links a:hover {
+  opacity: .7;
+}
+    
+    header {
+      min-height: 420px;
+      padding: 48px 24px;
+      background: linear-gradient(rgba(0,0,0,.42), rgba(0,0,0,.38)), url('https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero { max-width: 900px; }
+    .tag {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 999px;
+  backdrop-filter: blur(5px);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+body {
+  animation: pageFade 1s ease;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  color: #222;
+  background: #fff8ef;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(40px, 7vw, 78px);
+      margin: 0 0 16px;
+      letter-spacing: .04em;
+    }
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 22px);
+      line-height: 1.8;
+      margin: 0 auto;
+      max-width: 760px;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 48px 20px 72px; }
+    .section-title { margin-bottom: 18px; }
+    .section-title h2 { font-size: 30px; margin: 0 0 8px; }
+    .section-title p { color: #666; margin: 0; line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; align-items: start; }
+    .map-card, .info-card, .shop-card, .about-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 14px 35px rgba(105,72,34,.12);
+      overflow: hidden;
+      border: 1px solid rgba(133,92,43,.12);
+    }
+    .map-card iframe { width: 100%; height: 560px; border: 0; display: block; }
+    .map-card {
+  position: sticky;
+  top: 110px;
+  animation: mapEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+}
+@keyframes mapEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.map-loading {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 248, 239, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #7a4b13;
+  font-weight: 800;
+  font-size: 18px;
+  z-index: 5;
+}
+
+
+.map-loading.show {
+  display: flex;
+}
+
+.map-card.map-changing iframe {
+  animation: mapZoomChange .65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes mapZoomChange {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.94);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+    .info-card { padding: 24px; }
+    .info-card h3 { margin: 0 0 10px; font-size: 24px; }
+    .info-card p { line-height: 1.8; color: #555; }
+    .shop-list { display: grid; gap: 16px; margin-top: 18px; }
+    .filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 10px;
+}
+
+.filter-btn {
+  border: 1px solid rgba(133,92,43,.16);
+  background: #fff8ef;
+  color: #7a4b13;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(105,72,34,.12);
+}
+
+.filter-btn.active {
+  background: #111;
+  color: #fff;
+}
+    .shop-card {
+  display: grid;
+  grid-template-columns: 135px 1fr;
+  cursor: pointer;
+  transition: all .35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateX(60px);
+  animation: shopSlideIn .9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.shop-card:nth-child(1) {
+  animation-delay: .05s;
+}
+
+.shop-card:nth-child(2) {
+  animation-delay: .18s;
+}
+
+.shop-card:nth-child(3) {
+  animation-delay: .31s;
+}
+
+@keyframes shopSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.text-drop {
+  opacity: 0;
+  transform: translateY(-26px);
+  animation: textDropIn .9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes textDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shop-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 50px rgba(105,72,34,.22);
+}
+.shop-card:hover img {
+  transform: scale(1.08);
+}
+.active-card {
+  border: 2px solid rgba(205, 148, 59, 0.45);
+  box-shadow: 0 20px 45px rgba(205, 148, 59, 0.18);
+  transform: translateY(-4px) scale(1.01);
+}
+    .shop-card img {
+  width: 135px;
+  height: 135px;
+  object-fit: cover;
+  transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+    .shop-content { padding: 16px; }
+    .shop-content h4 { margin: 0 0 6px; font-size: 19px; }
+    .shop-content p { margin: 0 0 10px; color: #666; line-height: 1.6; font-size: 14px; }
+    .badge { display: inline-block; background: #f4e3c6; color: #7a4b13; padding: 5px 9px; border-radius: 999px; font-size: 12px; margin-right: 4px; }
+    .detail { margin-top: 24px; padding-top: 22px; border-top: 1px solid #eee; }
+    .detail img { width: 100%; height: 210px; object-fit: cover; border-radius: 18px; margin-bottom: 16px; }
+    .detail dl { display: grid; grid-template-columns: 92px 1fr; gap: 10px 12px; margin: 16px 0; }
+    .detail dt { font-weight: 700; color: #7a4b13; }
+    .detail dd { margin: 0; color: #444; line-height: 1.6; }
+    .detail {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid #eee;
+}
+
+.inline-detail {
+  animation: detailOpen .35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: top;
+}
+
+@keyframes detailOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scaleY(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      background: #111;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    .about-card { margin-top: 40px; padding: 28px; }
+    .about-card h2 { margin: 0 0 12px; font-size: 28px; }
+    .about-card p { color: #555; line-height: 1.9; margin: 0; }
+    .story-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.story-item {
+  background: #fff8ef;
+  border: 1px solid rgba(133,92,43,.12);
+  border-radius: 20px;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.story-item:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.story-item:nth-child(2) {
+  transition-delay: .12s;
+}
+
+.story-item:nth-child(3) {
+  transition-delay: .24s;
+}
+
+.story-item:nth-child(4) {
+  transition-delay: .36s;
+}
+
+.story-item span {
+  display: inline-block;
+  color: #c58a2d;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.story-item h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.story-item p {
+  margin: 0;
+  color: #555;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+@media (max-width: 880px) {
+  .story-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+    footer { text-align: center; color: #777; padding: 30px 16px; background: #fff; }
+    @media (max-width: 880px) {
+      .grid { grid-template-columns: 1fr; }
+      .map-card iframe { height: 420px; }
+    }
+    @media (max-width: 560px) {
+      header { min-height: 360px; padding: 34px 18px; }
+      main { padding: 34px 14px 56px; }
+      .shop-card { grid-template-columns: 1fr; }
+      .shop-card img { width: 100%; height: 190px; }
+      .detail dl { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+
+  .navbar {
+    top: 12px;
+    padding: 12px 16px;
+    border-radius: 18px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  header {
+    min-height: 360px;
+    padding-top: 110px;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-card iframe {
+    height: 360px;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+  <div class="logo">Kagawa Udon Guide</div>
+  <div class="nav-links">
+   <a href="#map">Map</a>
+<a href="#shops">Shops</a>
+<a href="#about">About</a>
+  </div>
+</nav>
+  <header>
+    <div class="hero">
+     <div class="tag text-drop">For visitors to Kagawa</div>
+    <h1 class="text-drop" style="animation-delay: .15s;">Kagawa Udon Guide</h1>
+      <p class="text-drop" style="animation-delay: .3s;">外国人観光客向けに、香川県内のうどん店の場所・特徴・おすすめメニューを分かりやすく紹介する小さな観光案内サイトです。</p>
+    </div>
+  </header>
+
+  <main>
+   <section class="section-title" id="map">
+      <h2 class="text-drop">Udon Map</h2>
+      <p class="text-drop" style="animation-delay: .12s;">地図上でお店の位置を確認しながら、右側のカードから詳しい情報を見ることができます。</p>
+    </section>
+
+    <section class="grid">
+      <div class="map-card">
+  <div class="map-loading" id="mapLoading">
+    Loading Map...
+  </div>
+
+  <iframe
+    id="mapFrame"
+    src="https://www.google.com/maps?q=%E9%A6%99%E5%B7%9D%E7%9C%8C%E3%81%86%E3%81%A9%E3%82%93&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+      <aside class="info-card" id="shops">
+        <h3 class="text-drop" style="animation-delay: .18s;">おすすめ店舗</h3>
+        <p class="text-drop" style="animation-delay: .28s;">まずは3店舗だけに絞り、情報の見やすさと使いやすさを重視して作成しました。</p>
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="setFilter('all')">全部</button>
+  <button class="filter-btn" onclick="setFilter('高松市内')">高松市内</button>
+  <button class="filter-btn" onclick="setFilter('深夜営業')">深夜営業</button>
+  <button class="filter-btn" onclick="setFilter('カレーうどん')">カレーうどん</button>
+  <button class="filter-btn" onclick="setFilter('釜玉うどん')">釜玉うどん</button>
+</div>
+        <div class="shop-list" id="shopList"></div>
+      </aside>
+    </section>
+
+  <section class="about-card" id="about">
+  <h2>Project Story</h2>
+  <div class="story-grid">
+    <div class="story-item">
+      <span>01</span>
+      <h3>背景</h3>
+      <p><p>香川大学で地域観光について学び、ゼミ活動ではうどん店の多言語メニュー作成にも関わりました。その経験から、外国人観光客がうどん店の場所・メニュー・特徴を一度に確認しづらいと感じました。</p></p>
+    </div>
+    <div class="story-item">
+      <span>02</span>
+      <h3>課題</h3>
+      <p>有名店の情報は多くありますが、観光客にとっては「どこにあるか」「何を食べればよいか」が分かりにくい場合があります。</p>
+    </div>
+    <div class="story-item">
+      <span>03</span>
+      <h3>工夫</h3>
+      <p>地図・店舗カード・おすすめメニューを一つの画面にまとめ、短時間で店を選べるようにしました。</p>
+    </div>
+    <div class="story-item">
+      <span>04</span>
+      <h3>今後</h3>
+      <p>今後は多言語表示、現在地からのルート検索、営業時間情報、混雑状況なども追加したいと考えています。</p>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer>© 2026 Kagawa Udon Guide / Portfolio Project</footer>
+
+  <script>
+    const shops = [
+      {
+        name: '手打ちうどん 鶴丸',
+  area: '高松市',
+  tags: ['深夜営業', 'カレーうどん'],
+  image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=900&q=80',
+  address: '香川県高松市古馬場町9-34',
+  menu: 'カレーうどん、肉うどん',
+  description: '深夜まで営業している高松市内の人気店です。特にカレーうどんが有名で、観光客にも人気があります。',
+  english: 'A popular udon restaurant in Takamatsu, famous for curry udon and late-night dining.',
+  chinese: '位于高松市中心的人气乌冬店，以咖喱乌冬较为有名，适合晚上或观光结束后前往',
+  map: 'https://www.google.com/maps/search/?api=1&query=%E9%B6%B4%E4%B8%B8+%E9%AB%98%E6%9D%BE',
+  mapEmbed: 'https://www.google.com/maps?q=手打ちうどん 鶴丸 高松&z=16&output=embed'
+      },
+      
+        {
+  name: '山越うどん',
+        area: '綾川町',
+        tags: ['有名店', '釜玉うどん'],
+        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=900&q=80',
+        address: '香川県綾歌郡綾川町羽床上602-2',
+        menu: '釜玉うどん、かけうどん',
+        description: '釜玉うどんで知られる有名店です。初めて香川のうどんを体験する観光客にも分かりやすい代表的なお店です。',
+        english: 'A famous udon shop known for kamatama udon. Good for first-time visitors to Kagawa.',
+        chinese: '位于绫川町的知名乌冬名店，以釜玉乌冬最为有名，能够体验到香川传统的自助式乌冬文化。',
+        map: 'https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E8%B6%8A%E3%81%86%E3%81%A9%E3%82%93',
+        mapEmbed: 'https://www.google.com/maps?q=山越うどん&z=16&output=embed'
+},
+      
+      {
+        name: '手打十段 うどんバカ一代',
+        area: '高松市',
+        tags: ['高松市内', 'アクセス良好'],
+        image: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=900&q=80',
+        address: '香川県高松市多賀町1丁目6-7',
+        menu: '釜バターうどん、ぶっかけうどん',
+        description: '高松市内からアクセスしやすい人気店です。観光客にも利用しやすく、釜バターうどんがよく知られています。',
+        english: 'A popular udon shop in Takamatsu City, famous for kama-butter udon.',
+        chinese: '高松市内非常有人气的乌冬店，以独特的“釜バター乌冬”而闻名，深受游客和年轻人欢迎。',
+        map: 'https://www.google.com/maps/search/?api=1&query=%E3%81%86%E3%81%A9%E3%82%93%E3%83%90%E3%82%AB%E4%B8%80%E4%BB%A3',
+        mapEmbed: 'https://www.google.com/maps?q=手打十段 うどんバカ一代&z=16&output=embed'
+      }
+    ];
+
+    const shopList = document.getElementById('shopList');
+    const detail = document.getElementById('detail');
+
+    let selectedIndex = null;
+    let currentFilter = 'all';
+
+function renderList() {
+  const filteredShops = currentFilter === 'all'
+    ? shops
+    : shops.filter(shop => shop.tags.includes(currentFilter) || shop.area === currentFilter);
+
+  shopList.innerHTML = filteredShops.map((shop) => {
+    const originalIndex = shops.indexOf(shop);
+
+    return `
+      <article class="shop-card ${selectedIndex === originalIndex ? 'active-card' : ''}" onclick="showDetail(${originalIndex})">
+        <img src="${shop.image}" alt="${shop.name}">
+        <div class="shop-content">
+          <h4>${shop.name}</h4>
+          <p>${shop.area} / ${shop.menu}</p>
+          ${shop.tags.map(tag => `<span class="badge">${tag}</span>`).join('')}
+        </div>
+      </article>
+
+      ${selectedIndex === originalIndex ? `
+        <div class="detail inline-detail">
+          <img src="${shop.image}" alt="${shop.name}">
+          <h3>${shop.name}</h3>
+          <p>${shop.description}</p>
+          <p><strong>English:</strong> ${shop.english}</p>
+          <p><strong>中文:</strong> ${shop.chinese}</p>
+          <dl>
+            <dt>住所</dt><dd>${shop.address}</dd>
+            <dt>おすすめ</dt><dd>${shop.menu}</dd>
+            <dt>エリア</dt><dd>${shop.area}</dd>
+          </dl>
+          <a class="button" href="${shop.map}" target="_blank" rel="noopener">Google Mapsで見る</a>
+        </div>
+      ` : ''}
+    `;
+  }).join('');
+}
+
+function showDetail(index) {
+  if (selectedIndex === index) {
+    selectedIndex = null;
+  } else {
+    selectedIndex = index;
+  }
+
+  renderList();
+
+  if (selectedIndex !== null) {
+    const mapFrame = document.getElementById('mapFrame');
+    const mapCard = document.querySelector('.map-card');
+    const mapLoading = document.getElementById('mapLoading');
+
+    mapLoading.classList.add('show');
+
+    mapCard.classList.remove('map-changing');
+    void mapCard.offsetWidth;
+    mapCard.classList.add('map-changing');
+
+    mapFrame.src = shops[index].mapEmbed;
+
+    setTimeout(() => {
+      mapLoading.classList.remove('show');
+    }, 900);
+  }
+
+  const openedDetail = document.querySelector('.inline-detail');
+  if (openedDetail) {
+    openedDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function setFilter(filter) {
+  currentFilter = filter;
+  selectedIndex = null;
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  event.target.classList.add('active');
+
+  renderList();
+}
+const storyItems = document.querySelectorAll('.story-item');
+
+function revealStory() {
+  storyItems.forEach((item) => {
+    const top = item.getBoundingClientRect().top;
+
+    if (top < window.innerHeight - 80) {
+      item.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealStory);
+
+revealStory();
+    renderList();
+  </script>
+</body>
+</html>
