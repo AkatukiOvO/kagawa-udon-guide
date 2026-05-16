@@ -143,7 +143,7 @@
 }
 
 body {
-  animation: pageFade 1s ease;
+  animation: pageFade 1.5s ease;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   color: #222;
@@ -164,6 +164,34 @@ body.theme-transition header,
 body.theme-transition main,
 body.theme-transition footer {
   animation: pageFade .75s ease;
+}
+
+header .hero,
+main {
+  transition: opacity .34s ease, transform .34s ease, filter .34s ease;
+  will-change: opacity, transform;
+}
+
+body.language-changing header .hero,
+body.language-changing main {
+  opacity: .34;
+  transform: translateY(8px);
+  filter: blur(.4px);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header .hero,
+  main {
+    transition: none;
+  }
+
+  body.language-changing header .hero,
+  body.language-changing main {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }
       font-size: 14px;
       margin-bottom: 18px;
@@ -187,7 +215,7 @@ body.theme-transition footer {
   background: rgba(255,255,255,.55);
   border: 1px solid rgba(133,92,43,.12);
   border-radius: 24px;
-  animation: pageFade 1s ease;
+  animation: pageFade 1.5s ease;
 }
 
 .intro-badge {
@@ -239,7 +267,7 @@ body.theme-transition footer {
       margin: 0 0 4px;
       opacity: 0;
       transform: translateY(-16px);
-      animation: overviewTextDrop .9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: overviewTextDrop 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .overview-header p {
       color: #666;
@@ -248,7 +276,7 @@ body.theme-transition footer {
       margin: 0;
       opacity: 0;
       transform: translateY(-14px);
-      animation: overviewTextDrop .9s cubic-bezier(0.16, 1, 0.3, 1) .12s forwards;
+      animation: overviewTextDrop 1.35s cubic-bezier(0.16, 1, 0.3, 1) .18s forwards;
     }
     .overview-track {
       display: grid;
@@ -274,21 +302,21 @@ body.theme-transition footer {
       scroll-snap-align: start;
       opacity: 0;
       transform: translateY(28px);
-      animation: overviewCardEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: overviewCardEnter 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       transition: transform .25s ease;
       text-align: center;
     }
     .overview-card:hover {
       transform: translateY(-4px);
     }
-    .overview-card:nth-child(1) { animation-delay: .04s; }
-    .overview-card:nth-child(2) { animation-delay: .09s; }
-    .overview-card:nth-child(3) { animation-delay: .14s; }
-    .overview-card:nth-child(4) { animation-delay: .19s; }
-    .overview-card:nth-child(5) { animation-delay: .24s; }
-    .overview-card:nth-child(6) { animation-delay: .29s; }
-    .overview-card:nth-child(7) { animation-delay: .34s; }
-    .overview-card:nth-child(8) { animation-delay: .39s; }
+    .overview-card:nth-child(1) { animation-delay: .06s; }
+    .overview-card:nth-child(2) { animation-delay: .14s; }
+    .overview-card:nth-child(3) { animation-delay: .21s; }
+    .overview-card:nth-child(4) { animation-delay: .29s; }
+    .overview-card:nth-child(5) { animation-delay: .36s; }
+    .overview-card:nth-child(6) { animation-delay: .44s; }
+    .overview-card:nth-child(7) { animation-delay: .51s; }
+    .overview-card:nth-child(8) { animation-delay: .59s; }
     .overview-card img {
       width: 78px;
       height: 58px;
@@ -338,7 +366,7 @@ body.theme-transition footer {
     .map-card {
   position: sticky;
   top: 110px;
-  animation: mapEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: mapEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   
 }
 @keyframes mapEnter {
@@ -372,7 +400,7 @@ body.theme-transition footer {
 }
 
 .map-card.map-changing iframe {
-  animation: mapZoomChange .65s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: mapZoomChange 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes mapZoomChange {
@@ -424,7 +452,7 @@ body.dark .random-btn {
 .filter-btn {
   opacity: 0;
 transform: translateX(60px);
-animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+animation: filterSlideIn 1.12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   border: 1px solid rgba(133,92,43,.16);
   background: #fff8ef;
   color: #7a4b13;
@@ -434,18 +462,18 @@ animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   cursor: pointer;
   transition: all .25s ease;
 }
-.filter-btn:nth-child(1) { animation-delay: .03s; }
-.filter-btn:nth-child(2) { animation-delay: .08s; }
-.filter-btn:nth-child(3) { animation-delay: .13s; }
-.filter-btn:nth-child(4) { animation-delay: .18s; }
-.filter-btn:nth-child(5) { animation-delay: .23s; }
-.filter-btn:nth-child(6) { animation-delay: .28s; }
-.filter-btn:nth-child(7) { animation-delay: .33s; }
-.filter-btn:nth-child(8) { animation-delay: .38s; }
-.filter-btn:nth-child(9) { animation-delay: .43s; }
-.filter-btn:nth-child(10) { animation-delay: .48s; }
-.filter-btn:nth-child(11) { animation-delay: .53s; }
-.filter-btn:nth-child(12) { animation-delay: .58s; }
+.filter-btn:nth-child(1) { animation-delay: .05s; }
+.filter-btn:nth-child(2) { animation-delay: .12s; }
+.filter-btn:nth-child(3) { animation-delay: .2s; }
+.filter-btn:nth-child(4) { animation-delay: .27s; }
+.filter-btn:nth-child(5) { animation-delay: .35s; }
+.filter-btn:nth-child(6) { animation-delay: .42s; }
+.filter-btn:nth-child(7) { animation-delay: .5s; }
+.filter-btn:nth-child(8) { animation-delay: .57s; }
+.filter-btn:nth-child(9) { animation-delay: .65s; }
+.filter-btn:nth-child(10) { animation-delay: .72s; }
+.filter-btn:nth-child(11) { animation-delay: .8s; }
+.filter-btn:nth-child(12) { animation-delay: .87s; }
 @keyframes filterSlideIn {
   from {
     opacity: 0;
@@ -478,7 +506,7 @@ animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .shop-card.show {
-  animation: shopSlideIn 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: shopSlideIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: var(--shop-delay, 0s);
 }
 
@@ -496,7 +524,7 @@ animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 .text-drop {
   opacity: 0;
   transform: translateY(-26px);
-  animation: textDropIn .9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: textDropIn 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes textDropIn {
@@ -567,7 +595,7 @@ animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     .badge { display: inline-block; background: #f4e3c6; color: #7a4b13; padding: 5px 9px; border-radius: 999px; font-size: 12px; margin-right: 4px; }
     .detail { margin-top: 24px; padding-top: 22px; border-top: 1px solid #eee; }
     .inline-detail {
-  animation: detailExpand .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: detailExpand 1.12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transform-origin: top center;
   overflow: hidden;
 }
@@ -596,7 +624,7 @@ animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .inline-detail {
-  animation: detailExpand .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: detailExpand 1.12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 transform-origin: top center;
 overflow: hidden;
 }
@@ -641,7 +669,7 @@ overflow: hidden;
   padding: 20px;
   opacity: 0;
   transform: translateY(60px);
-  transition: all 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .story-item.show {
@@ -653,15 +681,15 @@ overflow: hidden;
 }
 
 .story-item:nth-child(2) {
-  transition-delay: .12s;
+  transition-delay: .18s;
 }
 
 .story-item:nth-child(3) {
-  transition-delay: .24s;
+  transition-delay: .36s;
 }
 
 .story-item:nth-child(4) {
-  transition-delay: .36s;
+  transition-delay: .54s;
 }
 
 .story-item span {
@@ -761,7 +789,7 @@ line-height: 1;
 
 @media (max-width: 768px) {
   .back-to-top {
-    animation: backTopEnter .8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: backTopEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     right: 18px;
     bottom: 18px;
     width: 44px;
@@ -1051,8 +1079,8 @@ body.dark .navbar.scrolled .lang-btn.active {
   <header>
     <div class="hero">
      <div class="tag text-drop" data-i18n="hero.tag">For visitors to Kagawa</div>
-    <h1 class="text-drop" style="animation-delay: .15s;" data-i18n="hero.title">Kagawa Udon Guide</h1>
-      <p class="text-drop" style="animation-delay: .3s;" data-i18n="hero.subtitle">外国人観光客向けに、香川県内のうどん店の場所・特徴・おすすめメニューを分かりやすく紹介する小さな観光案内サイトです。</p>
+    <h1 class="text-drop" style="animation-delay: .23s;" data-i18n="hero.title">Kagawa Udon Guide</h1>
+      <p class="text-drop" style="animation-delay: .45s;" data-i18n="hero.subtitle">外国人観光客向けに、香川県内のうどん店の場所・特徴・おすすめメニューを分かりやすく紹介する小さな観光案内サイトです。</p>
     </div>
   </header>
 
@@ -1067,7 +1095,7 @@ body.dark .navbar.scrolled .lang-btn.active {
 
    <section class="section-title" id="map">
       <h2 class="text-drop" data-i18n="map.title">Udon Map</h2>
-      <p class="text-drop" style="animation-delay: .12s;" data-i18n="map.subtitle">地図上でお店の位置を確認しながら、右側のカードから詳しい情報を見ることができます。</p>
+      <p class="text-drop" style="animation-delay: .18s;" data-i18n="map.subtitle">地図上でお店の位置を確認しながら、右側のカードから詳しい情報を見ることができます。</p>
     </section>
 
     <section class="grid">
@@ -1085,8 +1113,8 @@ body.dark .navbar.scrolled .lang-btn.active {
 </div>
 
       <aside class="info-card" id="shops">
-        <h3 class="text-drop" style="animation-delay: .18s;" data-i18n="shops.title">おすすめ店舗</h3>
-        <p class="text-drop" style="animation-delay: .28s;" data-i18n="shops.subtitle">まずは3店舗だけに絞り、情報の見やすさと使いやすさを重視して作成しました。</p>
+        <h3 class="text-drop" style="animation-delay: .27s;" data-i18n="shops.title">おすすめ店舗</h3>
+        <p class="text-drop" style="animation-delay: .42s;" data-i18n="shops.subtitle">まずは3店舗だけに絞り、情報の見やすさと使いやすさを重視して作成しました。</p>
         <button class="random-btn" onclick="randomPick()" data-i18n="shops.random">🎲 今日のおすすめを選ぶ</button>
 <div class="filter-bar">
   <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">全部</button>
@@ -1144,7 +1172,7 @@ body.dark .navbar.scrolled .lang-btn.active {
         name: '手打ちうどん 鶴丸',
   area: '高松市',
   tags: ['高松市内', '深夜営業', 'カレーうどん', '観光客向け', '有名店'],
-  image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=900&q=80',
+  image: 'images/tsurumaru.png',
   address: '香川県高松市古馬場町9-34',
   menu: 'カレーうどん、肉うどん',
   hours: '20:00〜翌2:00（日・祝定休）',
@@ -1159,7 +1187,7 @@ body.dark .navbar.scrolled .lang-btn.active {
   name: '山越うどん',
         area: '綾川町',
         tags: ['釜玉うどん', '有名店', '初めての香川', '観光客向け', '車で行きやすい', '行列店'],
-        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=900&q=80',
+        image: 'images/yamagoe.png',
         address: '香川県綾歌郡綾川町羽床上602-2',
         menu: '釜玉うどん、かけうどん',
         hours: '9:00〜13:30（日・水定休、臨時休業あり）',
@@ -1174,7 +1202,7 @@ body.dark .navbar.scrolled .lang-btn.active {
         name: '手打十段 うどんバカ一代',
         area: '高松市',
         tags: ['高松市内', '観光客向け', '初めての香川', '釜バターうどん', '行列店', '有名店'],
-        image: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=900&q=80',
+        image: 'images/bakaichidai.png',
         address: '香川県高松市多賀町1丁目6-7',
         menu: '釜バターうどん、ぶっかけうどん',
         hours: '6:00〜18:00（年中無休、元日休み）',
@@ -1189,7 +1217,7 @@ body.dark .navbar.scrolled .lang-btn.active {
         name: '釜あげうどん 岡じま 高松店',
         area: '高松市',
         tags: ['高松市内', '駅近', '観光客向け', '初めての香川', 'セルフ式'],
-        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=900&q=80',
+        image: 'images/okajima.png',
         address: '香川県高松市寿町1-4-3 高松中央通りビル1F',
         menu: '釜あげうどん、かけうどん、天ぷら',
         hours: '10:00〜15:00（基本無休）',
@@ -1204,7 +1232,7 @@ body.dark .navbar.scrolled .lang-btn.active {
         name: 'めんや七福 本店',
         area: '高松市',
         tags: ['高松市内', '地元感', 'ぶっかけうどん', '人気店', '昼営業'],
-        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=900&q=80',
+        image: 'images/shichifuku.png',
         address: '香川県高松市天神前6-10',
         menu: 'えびすぶっかけ、ぶっかけうどん、カレーうどん',
         hours: '10:00〜14:30（日・祝定休、麺終了次第終了）',
@@ -1219,7 +1247,7 @@ body.dark .navbar.scrolled .lang-btn.active {
         name: 'うどん屋もみじ',
         area: '高松市',
         tags: ['高松市内', '深夜営業', '観光客向け', '地元感', '夜うどん', '駅近'],
-        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=900&q=80',
+        image: 'images/momiji.png',
         address: '香川県高松市瓦町1丁目9-15',
         menu: '肉ぶっかけうどん、夜うどん',
         hours: '18:00〜翌2:00（日曜は18:00〜23:00、木曜定休）',
@@ -1249,7 +1277,7 @@ body.dark .navbar.scrolled .lang-btn.active {
         name: '番丁',
         area: '高松市',
         tags: ['高松市内', '栗林公園周辺', '地元感', '駅近', '昼営業'],
-        image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=900&q=80',
+        image: 'images/bancho.png',
         address: '香川県高松市番町4丁目14-26',
         menu: 'とり天ぶっかけ、しっぽくうどん、かけうどん',
         hours: '月〜金 10:30〜15:00 / 17:00〜18:30、土 10:30〜14:00（日・祝定休）',
@@ -1271,6 +1299,7 @@ body.dark .navbar.scrolled .lang-btn.active {
     let favoriteShops = loadFavorites();
     let shopCardObserver = null;
     let currentLanguage = 'ja';
+    let languageTransitionTimer = null;
     const languageButtonLabels = {
       desktop: {
         ja: '日本語',
@@ -1547,9 +1576,25 @@ function updateStaticText() {
 }
 
 function setLanguage(language) {
-  currentLanguage = language;
-  updateStaticText();
-  renderList();
+  if (!translations[language]) return;
+  window.clearTimeout(languageTransitionTimer);
+
+  if (language === currentLanguage) {
+    document.body.classList.remove('language-changing');
+    return;
+  }
+
+  document.body.classList.add('language-changing');
+
+  languageTransitionTimer = window.setTimeout(() => {
+    currentLanguage = language;
+    updateStaticText();
+    renderList();
+
+    requestAnimationFrame(() => {
+      document.body.classList.remove('language-changing');
+    });
+  }, 320);
 }
 
 function getTagLabel(tag) {
@@ -1620,7 +1665,7 @@ function resetFilterButtons() {
 
 function scrollToOpenedDetail(options = {}) {
   const block = options.block || 'center';
-  const delay = options.delay || 80;
+  const delay = options.delay || 120;
 
   requestAnimationFrame(() => {
     setTimeout(() => {
@@ -1645,8 +1690,8 @@ function openShopFromOverview(index) {
 
   setTimeout(() => {
     showDetail(index, { scrollDetail: false });
-    scrollToOpenedDetail({ block: 'center', delay: 120 });
-  }, 250);
+    scrollToOpenedDetail({ block: 'center', delay: 180 });
+  }, 375);
 }
 
 function observeShopCards() {
@@ -1658,7 +1703,7 @@ function observeShopCards() {
 
   cards.forEach((card, index) => {
     card.classList.remove('show');
-    card.style.setProperty('--shop-delay', `${index * 0.09}s`);
+    card.style.setProperty('--shop-delay', `${index * 0.14}s`);
   });
 
   if (!('IntersectionObserver' in window)) {
@@ -1767,11 +1812,11 @@ function showDetail(index, options = {}) {
 
     setTimeout(() => {
       mapLoading.classList.remove('show');
-    }, 900);
+    }, 1350);
   }
 
   if (shouldScrollDetail && selectedIndex !== null) {
-    scrollToOpenedDetail({ block: 'center', delay: 80 });
+    scrollToOpenedDetail({ block: 'center', delay: 120 });
   }
 }
 
@@ -1833,9 +1878,9 @@ function randomPick() {
 
   setTimeout(() => {
     mapLoading.classList.remove('show');
-  }, 900);
+  }, 1350);
 
-  scrollToOpenedDetail({ block: 'center', delay: 80 });
+  scrollToOpenedDetail({ block: 'center', delay: 120 });
 }
 function scrollToTop() {
   window.scrollTo({
