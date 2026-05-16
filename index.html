@@ -48,6 +48,7 @@
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 18px;
 }
 
@@ -60,6 +61,42 @@
 
 .nav-links a:hover {
   opacity: .7;
+}
+.language-switch {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.lang-btn {
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 9px;
+  transition: all .2s ease;
+}
+.lang-btn.active {
+  background: rgba(255,255,255,.82);
+  color: #222;
+}
+.navbar.scrolled .language-switch {
+  border-color: rgba(0,0,0,.12);
+  background: rgba(255,255,255,.62);
+}
+.navbar.scrolled .lang-btn {
+  color: #222;
+}
+.navbar.scrolled .lang-btn.active {
+  background: #111;
+  color: #fff;
 }
 .theme-toggle {
   width: 34px;
@@ -85,8 +122,8 @@
 }
     
     header {
-      min-height: 420px;
-      padding: 48px 24px;
+      min-height: 300px;
+      padding: 86px 24px 34px;
       background: linear-gradient(rgba(0,0,0,.42), rgba(0,0,0,.38)), url('https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=1600&q=80') center/cover;
       color: white;
       display: flex;
@@ -94,15 +131,15 @@
       justify-content: center;
       text-align: center;
     }
-    .hero { max-width: 900px; }
+    .hero { max-width: 760px; }
     .tag {
   display: inline-block;
-  padding: 8px 14px;
+  padding: 6px 12px;
   border: 1px solid rgba(255,255,255,.55);
   border-radius: 999px;
   backdrop-filter: blur(5px);
-  font-size: 14px;
-  margin-bottom: 18px;
+  font-size: 12px;
+  margin-bottom: 12px;
 }
 
 body {
@@ -132,15 +169,15 @@ body.theme-transition footer {
       margin-bottom: 18px;
     }
     h1 {
-      font-size: clamp(40px, 7vw, 78px);
-      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 54px);
+      margin: 0 0 10px;
       letter-spacing: .04em;
     }
     .hero p {
-      font-size: clamp(16px, 2.5vw, 22px);
-      line-height: 1.8;
+      font-size: clamp(14px, 1.8vw, 17px);
+      line-height: 1.6;
       margin: 0 auto;
-      max-width: 760px;
+      max-width: 660px;
     }
     main { max-width: 1180px; margin: 0 auto; padding: 48px 20px 72px; }
     .intro-section {
@@ -187,6 +224,115 @@ body.theme-transition footer {
       box-shadow: 0 14px 35px rgba(105,72,34,.12);
       overflow: hidden;
       border: 1px solid rgba(133,92,43,.12);
+    }
+    .shop-overview {
+      margin: -16px calc(50% - 50vw) 30px;
+      padding: 0 max(20px, calc((100vw - 1180px) / 2));
+      overflow: hidden;
+    }
+    .overview-header {
+      margin-bottom: 12px;
+    }
+    .overview-header h2 {
+      font-size: 22px;
+      line-height: 1.15;
+      margin: 0 0 4px;
+      opacity: 0;
+      transform: translateY(-16px);
+      animation: overviewTextDrop .9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .overview-header p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+      opacity: 0;
+      transform: translateY(-14px);
+      animation: overviewTextDrop .9s cubic-bezier(0.16, 1, 0.3, 1) .12s forwards;
+    }
+    .overview-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 96px;
+      gap: 18px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 6px 4px 18px;
+    }
+    .overview-track::-webkit-scrollbar {
+      display: none;
+    }
+    .overview-card {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      cursor: pointer;
+      scroll-snap-align: start;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: overviewCardEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transition: transform .25s ease;
+      text-align: center;
+    }
+    .overview-card:hover {
+      transform: translateY(-4px);
+    }
+    .overview-card:nth-child(1) { animation-delay: .04s; }
+    .overview-card:nth-child(2) { animation-delay: .09s; }
+    .overview-card:nth-child(3) { animation-delay: .14s; }
+    .overview-card:nth-child(4) { animation-delay: .19s; }
+    .overview-card:nth-child(5) { animation-delay: .24s; }
+    .overview-card:nth-child(6) { animation-delay: .29s; }
+    .overview-card:nth-child(7) { animation-delay: .34s; }
+    .overview-card:nth-child(8) { animation-delay: .39s; }
+    .overview-card img {
+      width: 78px;
+      height: 58px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 8px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.56);
+      box-shadow: 0 8px 18px rgba(105,72,34,.1);
+      transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow .25s ease;
+    }
+    .overview-card:hover img {
+      transform: scale(1.04);
+      box-shadow: 0 12px 24px rgba(105,72,34,.16);
+    }
+    .overview-content {
+      padding: 0;
+    }
+    .overview-content h3 {
+      font-size: 11px;
+      line-height: 1.25;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    @keyframes overviewCardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes overviewTextDrop {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .map-card iframe { width: 100%; height: 560px; border: 0; display: block; }
     .map-card {
@@ -324,23 +470,16 @@ animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     .shop-card {
   display: grid;
   grid-template-columns: 135px 1fr;
+  position: relative;
   cursor: pointer;
   transition: all .35s cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 0;
   transform: translateX(60px);
-  animation: shopSlideIn .9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.shop-card:nth-child(1) {
-  animation-delay: .05s;
-}
-
-.shop-card:nth-child(2) {
-  animation-delay: .18s;
-}
-
-.shop-card:nth-child(3) {
-  animation-delay: .31s;
+.shop-card.show {
+  animation: shopSlideIn 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--shop-delay, 0s);
 }
 
 @keyframes shopSlideIn {
@@ -390,9 +529,41 @@ animation: filterSlideIn .75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   object-fit: cover;
   transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1);
 }
-    .shop-content { padding: 16px; }
+    .shop-content { padding: 16px 54px 16px 16px; }
     .shop-content h4 { margin: 0 0 6px; font-size: 19px; }
     .shop-content p { margin: 0 0 10px; color: #666; line-height: 1.6; font-size: 14px; }
+    .favorite-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,.58);
+      border-radius: 50%;
+      background: rgba(255,255,255,.42);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #7a4b13;
+      font-size: 21px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 22px rgba(105,72,34,.14);
+      transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
+      z-index: 2;
+    }
+    .favorite-btn:hover {
+      transform: translateY(-2px) scale(1.08);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 14px 28px rgba(105,72,34,.2);
+    }
+    .favorite-btn.is-favorite {
+      background: rgba(255,255,255,.8);
+      color: #d94b62;
+      border-color: rgba(217,75,98,.28);
+    }
     .badge { display: inline-block; background: #f4e3c6; color: #7a4b13; padding: 5px 9px; border-radius: 999px; font-size: 12px; margin-right: 4px; }
     .detail { margin-top: 24px; padding-top: 22px; border-top: 1px solid #eee; }
     .inline-detail {
@@ -600,8 +771,39 @@ line-height: 1;
 }
 body.dark .logo,
 body.dark .nav-links a,
-body.dark .theme-toggle {
+body.dark .theme-toggle,
+body.dark .lang-btn {
   color: #fff !important;
+}
+body.dark .navbar,
+body.dark .navbar.scrolled {
+  background: rgba(18,18,18,.72);
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 12px 32px rgba(0,0,0,.32);
+}
+body.dark .navbar .logo,
+body.dark .navbar.scrolled .logo,
+body.dark .navbar .nav-links a,
+body.dark .navbar.scrolled .nav-links a,
+body.dark .navbar .theme-toggle,
+body.dark .navbar.scrolled .theme-toggle,
+body.dark .navbar .lang-btn,
+body.dark .navbar.scrolled .lang-btn {
+  color: #fff !important;
+}
+body.dark .navbar .language-switch,
+body.dark .navbar.scrolled .language-switch {
+  border-color: rgba(255,255,255,.16) !important;
+  background: rgba(255,255,255,.1) !important;
+}
+body.dark .navbar .lang-btn.active,
+body.dark .navbar.scrolled .lang-btn.active {
+  background: rgba(255,255,255,.9) !important;
+  color: #111 !important;
+}
+body.dark .lang-btn.active {
+  background: rgba(255,255,255,.9) !important;
+  color: #111 !important;
 }
 body.dark {
   background: #121212;
@@ -619,6 +821,7 @@ body.dark .map-card {
 
 body.dark .shop-content p,
 body.dark .section-title p,
+body.dark .overview-header p,
 body.dark .info-card p,
 body.dark .about-card p,
 body.dark .detail dd,
@@ -634,9 +837,32 @@ body.dark .filter-btn {
   border-color: rgba(255,255,255,.1);
 }
 
+body.dark .overview-card {
+  color: #f5f5f5;
+}
+
+body.dark .overview-card img {
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 8px 18px rgba(0,0,0,.26);
+}
+
 body.dark .badge {
   background: rgba(255,255,255,.12);
   color: #f5f5f5;
+}
+body.dark .favorite-btn {
+  background: rgba(30,30,30,.62);
+  border-color: rgba(255,255,255,.16);
+  color: #f5f5f5;
+  box-shadow: 0 10px 22px rgba(0,0,0,.3);
+}
+body.dark .favorite-btn:hover {
+  background: rgba(255,255,255,.16);
+}
+body.dark .favorite-btn.is-favorite {
+  background: rgba(217,75,98,.18);
+  border-color: rgba(217,75,98,.4);
+  color: #ff7f96;
 }
 body.dark .back-to-top {
   background: rgba(255,255,255,.72);
@@ -655,13 +881,77 @@ body.dark .filter-btn.active {
     @media (max-width: 880px) {
       .grid { grid-template-columns: 1fr; }
       .map-card iframe { height: 420px; }
+      .shop-overview {
+        margin-top: -10px;
+      }
+      .overview-track {
+        grid-auto-columns: 92px;
+        gap: 16px;
+      }
     }
     @media (max-width: 560px) {
-      header { min-height: 360px; padding: 34px 18px; }
+      header { min-height: 270px; padding: 88px 18px 30px; }
       main { padding: 34px 14px 56px; }
       .shop-card { grid-template-columns: 1fr; }
       .shop-card img { width: 100%; height: 190px; }
+      .shop-content { padding: 16px; }
+      .shop-overview {
+        margin-left: -14px;
+        margin-right: -14px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+      .overview-track {
+        grid-auto-columns: 86px;
+        gap: 14px;
+      }
+      .overview-card img {
+        width: 72px;
+        height: 54px;
+      }
       .detail dl { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        top: 12px;
+        width: min(94%, 1100px);
+        padding: 10px 12px;
+        border-radius: 16px;
+      }
+
+      .logo {
+        flex: 0 0 auto;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      .nav-links > a {
+        display: none !important;
+      }
+
+      .language-switch {
+        gap: 2px;
+        padding: 2px;
+      }
+
+      .lang-btn {
+        font-size: 11px;
+        min-width: 30px;
+        padding: 5px 7px;
+      }
+
+      .theme-toggle {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 30px;
+        font-size: 13px;
+      }
     }
     @media (max-width: 768px) {
     .map-card {
@@ -687,12 +977,12 @@ body.dark .filter-btn.active {
   }
 
   header {
-    min-height: 360px;
-    padding-top: 110px;
+    min-height: 290px;
+    padding-top: 104px;
   }
 
   h1 {
-    font-size: 52px;
+    font-size: 38px;
   }
 
   .grid {
@@ -711,8 +1001,33 @@ body:not(.dark) .navbar.scrolled .theme-toggle {
 
 body.dark .navbar .logo,
 body.dark .navbar .nav-links a,
-body.dark .navbar .theme-toggle {
+body.dark .navbar .theme-toggle,
+body.dark .navbar .lang-btn {
   color: #fff !important;
+}
+body.dark .navbar.scrolled .logo,
+body.dark .navbar.scrolled .nav-links a,
+body.dark .navbar.scrolled .theme-toggle {
+  color: #fff !important;
+}
+body.dark .navbar .language-switch,
+body.dark .navbar.scrolled .language-switch,
+body.dark .language-switch {
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.1);
+}
+body.dark .navbar .lang-btn.active,
+body.dark .navbar.scrolled .lang-btn.active,
+body.dark .lang-btn.active {
+  background: rgba(255,255,255,.9) !important;
+  color: #111 !important;
+}
+body.dark .navbar.scrolled .lang-btn {
+  color: #f5f5f5 !important;
+}
+body.dark .navbar.scrolled .lang-btn.active {
+  background: rgba(255,255,255,.9) !important;
+  color: #111 !important;
 }
   </style>
 </head>
@@ -722,24 +1037,37 @@ body.dark .navbar .theme-toggle {
   <nav class="navbar">
   <div class="logo">Kagawa Udon Guide</div>
   <div class="nav-links">
-  <a href="#map">Map</a>
-  <a href="#shops">Shops</a>
-  <a href="#about">About</a>
+  <a href="#map" data-i18n="nav.map">Map</a>
+  <a href="#shops" data-i18n="nav.shops">Shops</a>
+  <a href="#about" data-i18n="nav.about">About</a>
+  <div class="language-switch" aria-label="Language switch">
+    <button class="lang-btn active" type="button" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" type="button" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" type="button" data-lang="en" onclick="setLanguage('en')">English</button>
+  </div>
   <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 </div>
 </nav>
   <header>
     <div class="hero">
-     <div class="tag text-drop">For visitors to Kagawa</div>
-    <h1 class="text-drop" style="animation-delay: .15s;">Kagawa Udon Guide</h1>
-      <p class="text-drop" style="animation-delay: .3s;">外国人観光客向けに、香川県内のうどん店の場所・特徴・おすすめメニューを分かりやすく紹介する小さな観光案内サイトです。</p>
+     <div class="tag text-drop" data-i18n="hero.tag">For visitors to Kagawa</div>
+    <h1 class="text-drop" style="animation-delay: .15s;" data-i18n="hero.title">Kagawa Udon Guide</h1>
+      <p class="text-drop" style="animation-delay: .3s;" data-i18n="hero.subtitle">外国人観光客向けに、香川県内のうどん店の場所・特徴・おすすめメニューを分かりやすく紹介する小さな観光案内サイトです。</p>
     </div>
   </header>
 
   <main>
+    <section class="shop-overview" id="allShops">
+      <div class="overview-header">
+        <h2 data-i18n="overview.title">All Shops</h2>
+        <p data-i18n="overview.subtitle">香川県内のうどん店を一覧で見ることができます。</p>
+      </div>
+      <div class="overview-track" id="overviewTrack" aria-label="All shops overview"></div>
+    </section>
+
    <section class="section-title" id="map">
-      <h2 class="text-drop">Udon Map</h2>
-      <p class="text-drop" style="animation-delay: .12s;">地図上でお店の位置を確認しながら、右側のカードから詳しい情報を見ることができます。</p>
+      <h2 class="text-drop" data-i18n="map.title">Udon Map</h2>
+      <p class="text-drop" style="animation-delay: .12s;" data-i18n="map.subtitle">地図上でお店の位置を確認しながら、右側のカードから詳しい情報を見ることができます。</p>
     </section>
 
     <section class="grid">
@@ -757,49 +1085,49 @@ body.dark .navbar .theme-toggle {
 </div>
 
       <aside class="info-card" id="shops">
-        <h3 class="text-drop" style="animation-delay: .18s;">おすすめ店舗</h3>
-        <p class="text-drop" style="animation-delay: .28s;">まずは3店舗だけに絞り、情報の見やすさと使いやすさを重視して作成しました。</p>
-        <button class="random-btn" onclick="randomPick()">🎲 今日のおすすめを選ぶ</button>
+        <h3 class="text-drop" style="animation-delay: .18s;" data-i18n="shops.title">おすすめ店舗</h3>
+        <p class="text-drop" style="animation-delay: .28s;" data-i18n="shops.subtitle">まずは3店舗だけに絞り、情報の見やすさと使いやすさを重視して作成しました。</p>
+        <button class="random-btn" onclick="randomPick()" data-i18n="shops.random">🎲 今日のおすすめを選ぶ</button>
 <div class="filter-bar">
-  <button class="filter-btn active" onclick="setFilter('all')">全部</button>
-  <button class="filter-btn" onclick="setFilter('高松市内')">高松市内</button>
-  <button class="filter-btn" onclick="setFilter('深夜営業')">深夜営業</button>
-  <button class="filter-btn" onclick="setFilter('カレーうどん')">カレーうどん</button>
-  <button class="filter-btn" onclick="setFilter('釜玉うどん')">釜玉うどん</button>
-  <button class="filter-btn" onclick="setFilter('初めての香川')">初めての香川</button>
-<button class="filter-btn" onclick="setFilter('観光客向け')">観光客向け</button>
-<button class="filter-btn" onclick="setFilter('地元感')">地元感</button>
-<button class="filter-btn" onclick="setFilter('駅近')">駅近</button>
-<button class="filter-btn" onclick="setFilter('車で行きやすい')">車で行きやすい</button>
-<button class="filter-btn" onclick="setFilter('行列店')">行列店</button>
-<button class="filter-btn" onclick="setFilter('セルフ式')">セルフ式</button>
+  <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">全部</button>
+  <button class="filter-btn" data-filter="高松市内" onclick="setFilter('高松市内')">高松市内</button>
+  <button class="filter-btn" data-filter="深夜営業" onclick="setFilter('深夜営業')">深夜営業</button>
+  <button class="filter-btn" data-filter="カレーうどん" onclick="setFilter('カレーうどん')">カレーうどん</button>
+  <button class="filter-btn" data-filter="釜玉うどん" onclick="setFilter('釜玉うどん')">釜玉うどん</button>
+  <button class="filter-btn" data-filter="初めての香川" onclick="setFilter('初めての香川')">初めての香川</button>
+<button class="filter-btn" data-filter="観光客向け" onclick="setFilter('観光客向け')">観光客向け</button>
+<button class="filter-btn" data-filter="地元感" onclick="setFilter('地元感')">地元感</button>
+<button class="filter-btn" data-filter="駅近" onclick="setFilter('駅近')">駅近</button>
+<button class="filter-btn" data-filter="車で行きやすい" onclick="setFilter('車で行きやすい')">車で行きやすい</button>
+<button class="filter-btn" data-filter="行列店" onclick="setFilter('行列店')">行列店</button>
+<button class="filter-btn" data-filter="セルフ式" onclick="setFilter('セルフ式')">セルフ式</button>
 </div>
         <div class="shop-list" id="shopList"></div>
       </aside>
     </section>
 
   <section class="about-card" id="about">
-  <h2>Why I Made This</h2>
+  <h2 data-i18n="about.title">Why I Made This</h2>
   <div class="story-grid">
-  <div class="story-item">
+  <div class="story-item" data-story="background">
     <span>01</span>
     <h3>Background</h3>
     <p>香川大学で地域観光について学び、ゼミ活動ではうどん店の多言語メニュー作成に関わりました。その経験から、外国人観光客向けに情報を分かりやすく整理する必要性を感じました。</p>
   </div>
 
-  <div class="story-item">
+  <div class="story-item" data-story="problem">
     <span>02</span>
     <h3>Problem</h3>
     <p>うどん店の情報は多く存在しますが、観光客にとっては「場所」「おすすめメニュー」「店の特徴」を一度に比較しづらいという課題があります。</p>
   </div>
 
-  <div class="story-item">
+  <div class="story-item" data-story="solution">
     <span>03</span>
     <h3>Solution</h3>
     <p>地図、店舗カード、多言語説明、タグ検索を一つの画面にまとめ、短時間で自分に合う店を選べるようにしました。</p>
   </div>
 
-  <div class="story-item">
+  <div class="story-item" data-story="next">
     <span>04</span>
     <h3>Next Step</h3>
     <p>今後は掲載店舗を増やし、実際の多言語メニュー情報、営業時間、価格帯、観光客向けのおすすめ度なども追加したいと考えています。</p>
@@ -815,10 +1143,11 @@ body.dark .navbar .theme-toggle {
       {
         name: '手打ちうどん 鶴丸',
   area: '高松市',
-  tags: ['深夜営業', 'カレーうどん'],
+  tags: ['高松市内', '深夜営業', 'カレーうどん', '観光客向け', '有名店'],
   image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=900&q=80',
   address: '香川県高松市古馬場町9-34',
   menu: 'カレーうどん、肉うどん',
+  hours: '20:00〜翌2:00（日・祝定休）',
   description: '深夜まで営業している高松市内の人気店です。特にカレーうどんが有名で、観光客にも人気があります。',
   english: 'A popular udon restaurant in Takamatsu, famous for curry udon and late-night dining.',
   chinese: '位于高松市中心的人气乌冬店，以咖喱乌冬较为有名，适合晚上或观光结束后前往',
@@ -829,10 +1158,11 @@ body.dark .navbar .theme-toggle {
         {
   name: '山越うどん',
         area: '綾川町',
-        tags: ['有名店', '釜玉うどん'],
+        tags: ['釜玉うどん', '有名店', '初めての香川', '観光客向け', '車で行きやすい', '行列店'],
         image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=900&q=80',
         address: '香川県綾歌郡綾川町羽床上602-2',
         menu: '釜玉うどん、かけうどん',
+        hours: '9:00〜13:30（日・水定休、臨時休業あり）',
         description: '釜玉うどんで知られる有名店です。初めて香川のうどんを体験する観光客にも分かりやすい代表的なお店です。',
         english: 'A famous udon shop known for kamatama udon. Good for first-time visitors to Kagawa.',
         chinese: '位于绫川町的知名乌冬名店，以釜玉乌冬最为有名，能够体验到香川传统的自助式乌冬文化。',
@@ -843,25 +1173,518 @@ body.dark .navbar .theme-toggle {
       {
         name: '手打十段 うどんバカ一代',
         area: '高松市',
-        tags: ['高松市内', 'アクセス良好'],
+        tags: ['高松市内', '観光客向け', '初めての香川', '釜バターうどん', '行列店', '有名店'],
         image: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=900&q=80',
         address: '香川県高松市多賀町1丁目6-7',
         menu: '釜バターうどん、ぶっかけうどん',
+        hours: '6:00〜18:00（年中無休、元日休み）',
         description: '高松市内からアクセスしやすい人気店です。観光客にも利用しやすく、釜バターうどんがよく知られています。',
         english: 'A popular udon shop in Takamatsu City, famous for kama-butter udon.',
         chinese: '高松市内非常有人气的乌冬店，以独特的“釜バター乌冬”而闻名，深受游客和年轻人欢迎。',
         map: 'https://www.google.com/maps/search/?api=1&query=%E3%81%86%E3%81%A9%E3%82%93%E3%83%90%E3%82%AB%E4%B8%80%E4%BB%A3',
         mapEmbed: 'https://www.google.com/maps?q=手打十段 うどんバカ一代&z=16&output=embed'
+      },
+
+      {
+        name: '釜あげうどん 岡じま 高松店',
+        area: '高松市',
+        tags: ['高松市内', '駅近', '観光客向け', '初めての香川', 'セルフ式'],
+        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=900&q=80',
+        address: '香川県高松市寿町1-4-3 高松中央通りビル1F',
+        menu: '釜あげうどん、かけうどん、天ぷら',
+        hours: '10:00〜15:00（基本無休）',
+        description: '高松駅や玉藻公園から立ち寄りやすいセルフ式のうどん店です。看板メニューの釜あげうどんは、観光の途中でも香川らしさを体験しやすい一杯です。',
+        english: 'A self-service udon shop near Takamatsu Station, known for kama-age udon and easy access for visitors.',
+        chinese: '位于高松站附近的自助式乌冬店，以釜扬乌冬为招牌，适合初次到访香川的游客顺路品尝。',
+        map: 'https://www.google.com/maps/search/?api=1&query=%E9%87%9C%E3%81%82%E3%81%92%E3%81%86%E3%81%A9%E3%82%93+%E5%B2%A1%E3%81%98%E3%81%BE+%E9%AB%98%E6%9D%BE%E5%BA%97',
+        mapEmbed: 'https://www.google.com/maps?q=釜あげうどん 岡じま 高松店&z=16&output=embed'
+      },
+
+      {
+        name: 'めんや七福 本店',
+        area: '高松市',
+        tags: ['高松市内', '地元感', 'ぶっかけうどん', '人気店', '昼営業'],
+        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=900&q=80',
+        address: '香川県高松市天神前6-10',
+        menu: 'えびすぶっかけ、ぶっかけうどん、カレーうどん',
+        hours: '10:00〜14:30（日・祝定休、麺終了次第終了）',
+        description: '栗林公園からも行きやすい高松市内の人気店です。ぶっかけうどん系のメニューが充実しており、地元らしい雰囲気を楽しみたい人にも向いています。',
+        english: 'A popular Takamatsu udon shop near Ritsurin Garden, known for bukkake-style udon and a friendly local feel.',
+        chinese: '位于高松市天神前的人气乌冬店，距离栗林公园也较方便，以ぶっかけ乌冬等菜单受到欢迎。',
+        map: 'https://www.google.com/maps/search/?api=1&query=%E3%82%81%E3%82%93%E3%82%84%E4%B8%83%E7%A6%8F+%E6%9C%AC%E5%BA%97',
+        mapEmbed: 'https://www.google.com/maps?q=めんや七福 本店&z=16&output=embed'
+      },
+
+      {
+        name: 'うどん屋もみじ',
+        area: '高松市',
+        tags: ['高松市内', '深夜営業', '観光客向け', '地元感', '夜うどん', '駅近'],
+        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=900&q=80',
+        address: '香川県高松市瓦町1丁目9-15',
+        menu: '肉ぶっかけうどん、夜うどん',
+        hours: '18:00〜翌2:00（日曜は18:00〜23:00、木曜定休）',
+        description: '瓦町駅から歩いて行きやすい夜うどんの店です。飲食店が多いエリアにあり、観光や食事の後の一杯にも利用しやすいです。',
+        english: 'A late-night udon shop near Kawaramachi Station, convenient for visitors who want udon after dinner or sightseeing.',
+        chinese: '位于瓦町站附近的夜间乌冬店，适合观光或晚餐结束后前往，也很适合想体验高松夜乌冬文化的游客。',
+        map: 'https://www.google.com/maps/search/?api=1&query=うどん屋もみじ 香川県高松市瓦町1丁目9-15',
+        mapEmbed: 'https://www.google.com/maps?q=うどん屋もみじ%20香川県高松市瓦町1丁目9-15&z=17&output=embed'
+      },
+
+      {
+        name: '野口製麺',
+        area: '高松市',
+        tags: ['高松市内', '地元感', 'セルフ式', '車で行きやすい', '伝統的'],
+        image: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=900&q=80',
+        address: '香川県高松市上福岡町1286-6',
+        menu: '玉子とじうどん、かけうどん、天ぷら',
+        hours: '10:00〜14:00（月・日・祝定休）',
+        description: '高松市上福岡町にある地域密着型の製麺所系うどん店です。車で立ち寄りやすく、素朴で伝統的な讃岐うどんの雰囲気を味わえます。',
+        english: 'A local noodle-shop style udon restaurant in Takamatsu, good for a traditional and casual Sanuki udon stop by car.',
+        chinese: '位于高松市上福冈町的制面所风格乌冬店，适合开车前往，能感受到朴素传统的讃岐乌冬氛围。',
+        map: 'https://www.google.com/maps/search/?api=1&query=%E9%87%8E%E5%8F%A3%E8%A3%BD%E9%BA%BA+%E9%AB%98%E6%9D%BE',
+        mapEmbed: 'https://www.google.com/maps?q=野口製麺 高松&z=16&output=embed'
+      },
+
+      {
+        name: '番丁',
+        area: '高松市',
+        tags: ['高松市内', '栗林公園周辺', '地元感', '駅近', '昼営業'],
+        image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=900&q=80',
+        address: '香川県高松市番町4丁目14-26',
+        menu: 'とり天ぶっかけ、しっぽくうどん、かけうどん',
+        hours: '月〜金 10:30〜15:00 / 17:00〜18:30、土 10:30〜14:00（日・祝定休）',
+        description: '番町エリアにある昔ながらの手打ちうどん店です。栗林公園周辺からも移動しやすく、地元感のある昼食スポットとして使いやすいお店です。',
+        english: 'A traditional hand-made udon shop in the Bancho area, convenient for lunch near central Takamatsu and Ritsurin Garden.',
+        chinese: '位于高松番町区域的传统手打乌冬店，适合作为栗林公园周边或市中心午餐选择。',
+        map: 'https://www.google.com/maps/search/?api=1&query=%E3%81%95%E3%81%AC%E3%81%8D%E6%89%8B%E6%89%93%E3%81%86%E3%81%A9%E3%82%93+%E7%95%AA%E4%B8%81',
+        mapEmbed: 'https://www.google.com/maps?q=さぬき手打うどん 番丁&z=16&output=embed'
       }
     ];
 
     const shopList = document.getElementById('shopList');
+    const overviewTrack = document.getElementById('overviewTrack');
     const detail = document.getElementById('detail');
 
     let selectedIndex = null;
     let currentFilters = [];
+    const favoriteStorageKey = 'kagawaUdonFavoriteShops';
+    let favoriteShops = loadFavorites();
+    let shopCardObserver = null;
+    let currentLanguage = 'ja';
+    const languageButtonLabels = {
+      desktop: {
+        ja: '日本語',
+        zh: '中文',
+        en: 'English'
+      },
+      mobile: {
+        ja: 'JP',
+        zh: '中',
+        en: 'EN'
+      }
+    };
+
+    const translations = {
+      ja: {
+        nav: {
+          map: 'Map',
+          shops: 'Shops',
+          about: 'About'
+        },
+        hero: {
+          tag: 'For visitors to Kagawa',
+          title: 'Kagawa Udon Guide',
+          subtitle: '外国人観光客向けに、香川県内のうどん店の場所・特徴・おすすめメニューを分かりやすく紹介する小さな観光案内サイトです。'
+        },
+        overview: {
+          title: 'All Shops',
+          subtitle: '香川県内のうどん店を一覧で見ることができます。'
+        },
+        map: {
+          title: 'Udon Map',
+          subtitle: '地図上でお店の位置を確認しながら、右側のカードから詳しい情報を見ることができます。'
+        },
+        shops: {
+          title: 'おすすめ店舗',
+          subtitle: 'どこへ行くか迷ったら、縁に任せてみませんか。下のボタンから今日のおすすめ店をランダムに選べます。',
+          random: '🎲 今日の一杯を縁に任せる'
+        },
+        filters: {
+          all: '全部',
+          '高松市内': '高松市内',
+          '深夜営業': '深夜営業',
+          'カレーうどん': 'カレーうどん',
+          '釜玉うどん': '釜玉うどん',
+          '初めての香川': '初めての香川',
+          '観光客向け': '観光客向け',
+          '地元感': '地元感',
+          '駅近': '駅近',
+          '車で行きやすい': '車で行きやすい',
+          '行列店': '行列店',
+          'セルフ式': 'セルフ式'
+        },
+        about: {
+          title: 'Why I Made This',
+          stories: {
+            background: {
+              title: 'Background',
+              text: '香川大学で地域観光について学び、ゼミ活動ではうどん店の多言語メニュー作成に関わりました。その経験から、外国人観光客向けに情報を分かりやすく整理する必要性を感じました。'
+            },
+            problem: {
+              title: 'Problem',
+              text: 'うどん店の情報は多く存在しますが、観光客にとっては「場所」「おすすめメニュー」「店の特徴」を一度に比較しづらいという課題があります。'
+            },
+            solution: {
+              title: 'Solution',
+              text: '地図、店舗カード、多言語説明、タグ検索を一つの画面にまとめ、短時間で自分に合う店を選べるようにしました。'
+            },
+            next: {
+              title: 'Next Step',
+              text: '今後は掲載店舗を増やし、実際の多言語メニュー情報、営業時間、価格帯、観光客向けのおすすめ度なども追加したいと考えています。'
+            }
+          }
+        },
+        detail: {
+          address: '住所',
+          recommendation: 'おすすめ',
+          area: 'エリア',
+          hours: '営業時間',
+          mapLink: 'Google Mapsで見る'
+        }
+      },
+      zh: {
+        nav: {
+          map: '地图',
+          shops: '店铺',
+          about: '关于'
+        },
+        hero: {
+          tag: '香川游客乌冬指南',
+          title: '香川乌冬指南',
+          subtitle: '面向外国游客，清晰介绍香川县内乌冬店的位置、特色和推荐菜单，帮助你更快找到适合自己的店。'
+        },
+        overview: {
+          title: '全部店铺',
+          subtitle: '可以快速浏览香川县内收录的乌冬店。'
+        },
+        map: {
+          title: '乌冬地图',
+          subtitle: '可以一边查看地图上的店铺位置，一边从右侧卡片打开详细信息。'
+        },
+        shops: {
+          title: '推荐店铺',
+          subtitle: '不知道吃什么？不如交给缘分。点击下方按钮，随机选择今天推荐的乌冬店。',
+          random: '🎲 把今天这一碗交给缘分'
+        },
+        filters: {
+          all: '全部',
+          '高松市内': '高松市区',
+          '深夜営業': '深夜营业',
+          'カレーうどん': '咖喱乌冬',
+          '釜玉うどん': '釜玉乌冬',
+          '初めての香川': '第一次来香川',
+          '観光客向け': '适合游客',
+          '地元感': '本地感',
+          '駅近': '近车站',
+          '車で行きやすい': '适合自驾',
+          '行列店': '排队名店',
+          'セルフ式': '自助式',
+          '釜バターうどん': '釜黄油乌冬',
+          'ぶっかけうどん': '浇汁乌冬',
+          '有名店': '知名店',
+          '人気店': '人气店',
+          '昼営業': '白天营业',
+          '夜うどん': '夜乌冬',
+          '伝統的': '传统风格',
+          '栗林公園周辺': '栗林公园周边'
+        },
+        about: {
+          title: '制作这个网站的原因',
+          stories: {
+            background: {
+              title: '背景',
+              text: '我在香川大学学习地域观光，也曾参与乌冬店多语言菜单相关活动。这段经历让我意识到，有必要把面向外国游客的信息整理得更清楚。'
+            },
+            problem: {
+              title: '问题',
+              text: '乌冬店的信息虽然很多，但对游客来说，很难同时比较位置、推荐菜单和店铺特色。'
+            },
+            solution: {
+              title: '解决方式',
+              text: '我把地图、店铺卡片、多语言说明和标签筛选集中在同一个页面，让游客能在短时间内找到适合自己的店。'
+            },
+            next: {
+              title: '下一步',
+              text: '之后希望继续增加店铺数量，并补充真实的多语言菜单、营业时间、价格范围和游客推荐度等信息。'
+            }
+          }
+        },
+        detail: {
+          address: '地址',
+          recommendation: '推荐',
+          area: '区域',
+          hours: '营业时间',
+          mapLink: '在 Google Maps 查看'
+        }
+      },
+      en: {
+        nav: {
+          map: 'Map',
+          shops: 'Shops',
+          about: 'About'
+        },
+        hero: {
+          tag: 'For visitors to Kagawa',
+          title: 'Kagawa Udon Guide',
+          subtitle: 'A compact travel guide for visitors, introducing udon shops in Kagawa by location, features, and recommended dishes.'
+        },
+        overview: {
+          title: 'All Shops',
+          subtitle: 'Browse all listed udon shops in Kagawa at a glance.'
+        },
+        map: {
+          title: 'Udon Map',
+          subtitle: 'Check each shop on the map and open detailed information from the cards on the right.'
+        },
+        shops: {
+          title: 'Recommended Shops',
+          subtitle: 'Not sure where to go? Leave it to chance. Use the button below to pick today’s recommended udon shop at random.',
+          random: '🎲 Leave Today’s Bowl to Chance'
+        },
+        filters: {
+          all: 'All',
+          '高松市内': 'Takamatsu City',
+          '深夜営業': 'Late Night',
+          'カレーうどん': 'Curry Udon',
+          '釜玉うどん': 'Kamatama Udon',
+          '初めての香川': 'First Visit',
+          '観光客向け': 'Visitor Friendly',
+          '地元感': 'Local Feel',
+          '駅近': 'Near Station',
+          '車で行きやすい': 'Easy by Car',
+          '行列店': 'Popular Queue',
+          'セルフ式': 'Self-service',
+          '釜バターうどん': 'Kama Butter Udon',
+          'ぶっかけうどん': 'Bukkake Udon',
+          '有名店': 'Famous',
+          '人気店': 'Popular',
+          '昼営業': 'Daytime',
+          '夜うどん': 'Night Udon',
+          '伝統的': 'Traditional',
+          '栗林公園周辺': 'Near Ritsurin Garden'
+        },
+        about: {
+          title: 'Why I Made This',
+          stories: {
+            background: {
+              title: 'Background',
+              text: 'While studying regional tourism at Kagawa University, I worked on multilingual menu support for udon shops. That experience showed me how useful clear information can be for international visitors.'
+            },
+            problem: {
+              title: 'Problem',
+              text: 'There is plenty of information about udon shops, but visitors often find it hard to compare location, recommended dishes, and shop features all at once.'
+            },
+            solution: {
+              title: 'Solution',
+              text: 'This site brings together a map, shop cards, multilingual descriptions, and tag filters so visitors can quickly choose a shop that fits their trip.'
+            },
+            next: {
+              title: 'Next Step',
+              text: 'Next, I would like to add more shops, real multilingual menu details, opening hours, price ranges, and visitor-friendly ratings.'
+            }
+          }
+        },
+        detail: {
+          address: 'Address',
+          recommendation: 'Recommended',
+          area: 'Area',
+          hours: 'Hours',
+          mapLink: 'View on Google Maps'
+        }
+      }
+    };
+
+function getTranslation(path) {
+  return path.split('.').reduce((value, key) => value && value[key], translations[currentLanguage]) || '';
+}
+
+function updateStaticText() {
+  const langMap = {
+    ja: 'ja',
+    zh: 'zh-CN',
+    en: 'en'
+  };
+  document.documentElement.lang = langMap[currentLanguage] || 'ja';
+
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    element.textContent = getTranslation(element.dataset.i18n);
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(button => {
+    const filterKey = button.dataset.filter;
+    button.textContent = translations[currentLanguage].filters[filterKey] || filterKey;
+  });
+
+  document.querySelectorAll('.story-item').forEach(item => {
+    const story = translations[currentLanguage].about.stories[item.dataset.story];
+    if (!story) return;
+
+    const title = item.querySelector('h3');
+    const text = item.querySelector('p');
+
+    if (title) title.textContent = story.title;
+    if (text) text.textContent = story.text;
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(button => {
+    const labelSet = window.matchMedia('(max-width: 768px)').matches
+      ? languageButtonLabels.mobile
+      : languageButtonLabels.desktop;
+
+    button.textContent = labelSet[button.dataset.lang];
+    button.classList.toggle('active', button.dataset.lang === currentLanguage);
+  });
+}
+
+function setLanguage(language) {
+  currentLanguage = language;
+  updateStaticText();
+  renderList();
+}
+
+function getTagLabel(tag) {
+  return translations[currentLanguage].filters[tag] || tag;
+}
+
+function getShopFavoriteKey(shop) {
+  return `${shop.name}|${shop.address}`;
+}
+
+function loadFavorites() {
+  try {
+    return JSON.parse(localStorage.getItem(favoriteStorageKey)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveFavorites() {
+  try {
+    localStorage.setItem(favoriteStorageKey, JSON.stringify(favoriteShops));
+  } catch (error) {}
+}
+
+function isFavorite(shop) {
+  return favoriteShops.includes(getShopFavoriteKey(shop));
+}
+
+function toggleFavorite(event, index) {
+  event.stopPropagation();
+
+  const shop = shops[index];
+  const favoriteKey = getShopFavoriteKey(shop);
+
+  if (favoriteShops.includes(favoriteKey)) {
+    favoriteShops = favoriteShops.filter(item => item !== favoriteKey);
+  } else {
+    favoriteShops.push(favoriteKey);
+  }
+
+  saveFavorites();
+  renderList();
+}
+
+function renderOverview() {
+  overviewTrack.innerHTML = shops.map((shop, index) => `
+    <article class="overview-card" onclick="openShopFromOverview(${index})">
+      <img src="${shop.image}" alt="${shop.name}">
+      <div class="overview-content">
+        <h3>${shop.name}</h3>
+      </div>
+    </article>
+  `).join('');
+}
+
+function resetFilterButtons() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+
+  filterButtons.forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  const allButton = document.querySelector('.filter-btn');
+  if (allButton) {
+    allButton.classList.add('active');
+  }
+}
+
+function scrollToOpenedDetail(options = {}) {
+  const block = options.block || 'center';
+  const delay = options.delay || 80;
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const openedDetail = document.querySelector('.inline-detail');
+
+      if (openedDetail) {
+        openedDetail.scrollIntoView({ behavior: 'smooth', block });
+      }
+    }, delay);
+  });
+}
+
+function openShopFromOverview(index) {
+  currentFilters = [];
+  resetFilterButtons();
+  selectedIndex = null;
+
+  const mapSection = document.getElementById('map');
+  if (mapSection) {
+    mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  setTimeout(() => {
+    showDetail(index, { scrollDetail: false });
+    scrollToOpenedDetail({ block: 'center', delay: 120 });
+  }, 250);
+}
+
+function observeShopCards() {
+  const cards = shopList.querySelectorAll('.shop-card');
+
+  if (shopCardObserver) {
+    shopCardObserver.disconnect();
+  }
+
+  cards.forEach((card, index) => {
+    card.classList.remove('show');
+    card.style.setProperty('--shop-delay', `${index * 0.09}s`);
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(card => card.classList.add('show'));
+    return;
+  }
+
+  shopCardObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0,
+    rootMargin: '0px 0px 180px 0px'
+  });
+
+  cards.forEach(card => {
+    shopCardObserver.observe(card);
+  });
+}
 
 function renderList() {
+  const t = translations[currentLanguage];
   const filteredShops = currentFilters.length === 0
   ? shops
   : shops.filter(shop =>
@@ -872,14 +1695,29 @@ function renderList() {
 
   shopList.innerHTML = filteredShops.map((shop) => {
     const originalIndex = shops.indexOf(shop);
+    const favorite = isFavorite(shop);
+    const detailDescriptionMap = {
+      ja: shop.description,
+      zh: shop.chinese,
+      en: shop.english
+    };
+    const detailDescription = `<p>${detailDescriptionMap[currentLanguage] || shop.description}</p>`;
 
     return `
       <article class="shop-card ${selectedIndex === originalIndex ? 'active-card' : ''}" onclick="showDetail(${originalIndex})">
+        <button
+          class="favorite-btn ${favorite ? 'is-favorite' : ''}"
+          type="button"
+          aria-label="${favorite ? '收藏を解除' : '店铺を收藏'}"
+          aria-pressed="${favorite}"
+          onclick="toggleFavorite(event, ${originalIndex})">
+          ${favorite ? '♥' : '♡'}
+        </button>
         <img src="${shop.image}" alt="${shop.name}">
         <div class="shop-content">
           <h4>${shop.name}</h4>
           <p>${shop.area} / ${shop.menu}</p>
-          ${shop.tags.map(tag => `<span class="badge">${tag}</span>`).join('')}
+          ${shop.tags.map(tag => `<span class="badge">${getTagLabel(tag)}</span>`).join('')}
         </div>
       </article>
 
@@ -887,22 +1725,25 @@ function renderList() {
         <div class="detail inline-detail">
           <img src="${shop.image}" alt="${shop.name}">
           <h3>${shop.name}</h3>
-          <p>${shop.description}</p>
-          <p><strong>English:</strong> ${shop.english}</p>
-          <p><strong>中文:</strong> ${shop.chinese}</p>
+          ${detailDescription}
           <dl>
-            <dt>住所</dt><dd>${shop.address}</dd>
-            <dt>おすすめ</dt><dd>${shop.menu}</dd>
-            <dt>エリア</dt><dd>${shop.area}</dd>
+            <dt>${t.detail.address}</dt><dd>${shop.address}</dd>
+            <dt>${t.detail.recommendation}</dt><dd>${shop.menu}</dd>
+            <dt>${t.detail.area}</dt><dd>${shop.area}</dd>
+            <dt>${t.detail.hours}</dt><dd>${shop.hours}</dd>
           </dl>
-          <a class="button" href="${shop.map}" target="_blank" rel="noopener">Google Mapsで見る</a>
+          <a class="button" href="${shop.map}" target="_blank" rel="noopener">${t.detail.mapLink}</a>
         </div>
       ` : ''}
     `;
   }).join('');
+
+  observeShopCards();
 }
 
-function showDetail(index) {
+function showDetail(index, options = {}) {
+  const shouldScrollDetail = options.scrollDetail !== false;
+
   if (selectedIndex === index) {
     selectedIndex = null;
   } else {
@@ -929,9 +1770,8 @@ function showDetail(index) {
     }, 900);
   }
 
-  const openedDetail = document.querySelector('.inline-detail');
-  if (openedDetail) {
-    openedDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (shouldScrollDetail && selectedIndex !== null) {
+    scrollToOpenedDetail({ block: 'center', delay: 80 });
   }
 }
 
@@ -995,10 +1835,7 @@ function randomPick() {
     mapLoading.classList.remove('show');
   }, 900);
 
-  const openedDetail = document.querySelector('.inline-detail');
-  if (openedDetail) {
-    openedDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
+  scrollToOpenedDetail({ block: 'center', delay: 80 });
 }
 function scrollToTop() {
   window.scrollTo({
@@ -1050,7 +1887,10 @@ function updateNavbarColor() {
 }
 
 window.addEventListener('scroll', updateNavbarColor);
+window.addEventListener('resize', updateStaticText);
 updateNavbarColor();
+    updateStaticText();
+    renderOverview();
     renderList();
     
   </script>
