@@ -617,6 +617,7 @@ animation: filterSlideIn 1.12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     .detail dl { display: grid; grid-template-columns: minmax(120px, auto) 1fr; gap: 10px 14px; margin: 16px 0; }
     .detail dt { font-weight: 700; color: #7a4b13; white-space: nowrap; }
     .detail dd { margin: 0; color: #444; line-height: 1.6; word-break: normal; overflow-wrap: anywhere; }
+    .hours-note { margin: -4px 0 14px; color: #777; font-size: 12px; line-height: 1.6; }
     .detail {
   margin-top: 24px;
   padding-top: 22px;
@@ -856,6 +857,10 @@ body.dark .detail dd,
 body.dark .detail p,
 body.dark .story-item p {
   color: #cfcfcf;
+}
+
+body.dark .hours-note {
+  color: #aaa;
 }
 
 body.dark .story-item,
@@ -1394,6 +1399,7 @@ body.dark .navbar.scrolled .lang-btn.active {
           recommendation: 'おすすめ',
           area: 'エリア',
           hours: '営業時間',
+          hoursNote: '※ 営業時間は変更される場合があります。',
           mapLink: 'Google Mapsで見る'
         }
       },
@@ -1469,6 +1475,7 @@ body.dark .navbar.scrolled .lang-btn.active {
           recommendation: '推荐',
           area: '区域',
           hours: '营业时间',
+          hoursNote: '※ 营业时间可能会发生变化，前往前请确认官方信息。',
           mapLink: '在 Google Maps 查看'
         }
       },
@@ -1544,6 +1551,7 @@ body.dark .navbar.scrolled .lang-btn.active {
           recommendation: 'Recommended',
           area: 'Area',
           hours: 'Hours',
+          hoursNote: '※ Opening hours may change. Please check official information before visiting.',
           mapLink: 'View on Google Maps'
         }
       }
@@ -1799,6 +1807,7 @@ function renderList() {
             <dt>${t.detail.area}</dt><dd>${shop.area}</dd>
             <dt>${t.detail.hours}</dt><dd>${shop.hours}</dd>
           </dl>
+          <p class="hours-note">${t.detail.hoursNote}</p>
           <a class="button" href="${shop.map}" target="_blank" rel="noopener">${t.detail.mapLink}</a>
         </div>
       ` : ''}
