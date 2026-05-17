@@ -614,9 +614,9 @@ animation: filterSlideIn 1.12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }
     .detail img { width: 100%; height: 210px; object-fit: cover; border-radius: 18px; margin-bottom: 16px; }
-    .detail dl { display: grid; grid-template-columns: 92px 1fr; gap: 10px 12px; margin: 16px 0; }
-    .detail dt { font-weight: 700; color: #7a4b13; }
-    .detail dd { margin: 0; color: #444; line-height: 1.6; }
+    .detail dl { display: grid; grid-template-columns: minmax(120px, auto) 1fr; gap: 10px 14px; margin: 16px 0; }
+    .detail dt { font-weight: 700; color: #7a4b13; white-space: nowrap; }
+    .detail dd { margin: 0; color: #444; line-height: 1.6; word-break: normal; overflow-wrap: anywhere; }
     .detail {
   margin-top: 24px;
   padding-top: 22px;
@@ -1175,6 +1175,8 @@ body.dark .navbar.scrolled .lang-btn.active {
   image: 'images/tsurumaru.png',
   address: '香川県高松市古馬場町9-34',
   menu: 'カレーうどん、肉うどん',
+  menuZh: '咖喱乌冬、肉乌冬',
+  menuEn: 'Curry udon, meat udon',
   hours: '20:00〜翌2:00（日・祝定休）',
   description: '深夜まで営業している高松市内の人気店です。特にカレーうどんが有名で、観光客にも人気があります。',
   english: 'A popular udon restaurant in Takamatsu, famous for curry udon and late-night dining.',
@@ -1190,6 +1192,8 @@ body.dark .navbar.scrolled .lang-btn.active {
         image: 'images/yamagoe.png',
         address: '香川県綾歌郡綾川町羽床上602-2',
         menu: '釜玉うどん、かけうどん',
+        menuZh: '釜玉乌冬、清汤乌冬',
+        menuEn: 'Kamatama udon, kake udon',
         hours: '9:00〜13:30（日・水定休、臨時休業あり）',
         description: '釜玉うどんで知られる有名店です。初めて香川のうどんを体験する観光客にも分かりやすい代表的なお店です。',
         english: 'A famous udon shop known for kamatama udon. Good for first-time visitors to Kagawa.',
@@ -1205,6 +1209,8 @@ body.dark .navbar.scrolled .lang-btn.active {
         image: 'images/bakaichidai.png',
         address: '香川県高松市多賀町1丁目6-7',
         menu: '釜バターうどん、ぶっかけうどん',
+        menuZh: '釜黄油乌冬、浇汁乌冬',
+        menuEn: 'Kama butter udon, bukkake udon',
         hours: '6:00〜18:00（年中無休、元日休み）',
         description: '高松市内からアクセスしやすい人気店です。観光客にも利用しやすく、釜バターうどんがよく知られています。',
         english: 'A popular udon shop in Takamatsu City, famous for kama-butter udon.',
@@ -1220,6 +1226,8 @@ body.dark .navbar.scrolled .lang-btn.active {
         image: 'images/okajima.png',
         address: '香川県高松市寿町1-4-3 高松中央通りビル1F',
         menu: '釜あげうどん、かけうどん、天ぷら',
+        menuZh: '釜扬乌冬、清汤乌冬、天妇罗',
+        menuEn: 'Kama-age udon, kake udon, tempura',
         hours: '10:00〜15:00（基本無休）',
         description: '高松駅や玉藻公園から立ち寄りやすいセルフ式のうどん店です。看板メニューの釜あげうどんは、観光の途中でも香川らしさを体験しやすい一杯です。',
         english: 'A self-service udon shop near Takamatsu Station, known for kama-age udon and easy access for visitors.',
@@ -1235,6 +1243,8 @@ body.dark .navbar.scrolled .lang-btn.active {
         image: 'images/shichifuku.png',
         address: '香川県高松市天神前6-10',
         menu: 'えびすぶっかけ、ぶっかけうどん、カレーうどん',
+        menuZh: '惠比寿浇汁乌冬、浇汁乌冬、咖喱乌冬',
+        menuEn: 'Ebisu bukkake udon, bukkake udon, curry udon',
         hours: '10:00〜14:30（日・祝定休、麺終了次第終了）',
         description: '栗林公園からも行きやすい高松市内の人気店です。ぶっかけうどん系のメニューが充実しており、地元らしい雰囲気を楽しみたい人にも向いています。',
         english: 'A popular Takamatsu udon shop near Ritsurin Garden, known for bukkake-style udon and a friendly local feel.',
@@ -1250,6 +1260,8 @@ body.dark .navbar.scrolled .lang-btn.active {
         image: 'images/momiji.png',
         address: '香川県高松市瓦町1丁目9-15',
         menu: '肉ぶっかけうどん、夜うどん',
+        menuZh: '肉浇汁乌冬、夜乌冬',
+        menuEn: 'Meat bukkake udon, night udon',
         hours: '18:00〜翌2:00（日曜は18:00〜23:00、木曜定休）',
         description: '瓦町駅から歩いて行きやすい夜うどんの店です。飲食店が多いエリアにあり、観光や食事の後の一杯にも利用しやすいです。',
         english: 'A late-night udon shop near Kawaramachi Station, convenient for visitors who want udon after dinner or sightseeing.',
@@ -1265,6 +1277,8 @@ body.dark .navbar.scrolled .lang-btn.active {
         image: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=900&q=80',
         address: '香川県高松市上福岡町1286-6',
         menu: '玉子とじうどん、かけうどん、天ぷら',
+        menuZh: '鸡蛋汤乌冬、清汤乌冬、天妇罗',
+        menuEn: 'Egg-drop udon, kake udon, tempura',
         hours: '10:00〜14:00（月・日・祝定休）',
         description: '高松市上福岡町にある地域密着型の製麺所系うどん店です。車で立ち寄りやすく、素朴で伝統的な讃岐うどんの雰囲気を味わえます。',
         english: 'A local noodle-shop style udon restaurant in Takamatsu, good for a traditional and casual Sanuki udon stop by car.',
@@ -1280,6 +1294,8 @@ body.dark .navbar.scrolled .lang-btn.active {
         image: 'images/bancho.png',
         address: '香川県高松市番町4丁目14-26',
         menu: 'とり天ぶっかけ、しっぽくうどん、かけうどん',
+        menuZh: '鸡天浇汁乌冬、什锦汤乌冬、清汤乌冬',
+        menuEn: 'Chicken tempura bukkake udon, shippoku udon, kake udon',
         hours: '月〜金 10:30〜15:00 / 17:00〜18:30、土 10:30〜14:00（日・祝定休）',
         description: '番町エリアにある昔ながらの手打ちうどん店です。栗林公園周辺からも移動しやすく、地元感のある昼食スポットとして使いやすいお店です。',
         english: 'A traditional hand-made udon shop in the Bancho area, convenient for lunch near central Takamatsu and Ritsurin Garden.',
@@ -1747,6 +1763,12 @@ function renderList() {
       en: shop.english
     };
     const detailDescription = `<p>${detailDescriptionMap[currentLanguage] || shop.description}</p>`;
+    const detailMenuMap = {
+      ja: shop.menu,
+      zh: shop.menuZh,
+      en: shop.menuEn
+    };
+    const detailMenu = detailMenuMap[currentLanguage] || shop.menu;
 
     return `
       <article class="shop-card ${selectedIndex === originalIndex ? 'active-card' : ''}" onclick="showDetail(${originalIndex})">
@@ -1761,7 +1783,7 @@ function renderList() {
         <img src="${shop.image}" alt="${shop.name}">
         <div class="shop-content">
           <h4>${shop.name}</h4>
-          <p>${shop.area} / ${shop.menu}</p>
+          <p>${shop.area} / ${detailMenu}</p>
           ${shop.tags.map(tag => `<span class="badge">${getTagLabel(tag)}</span>`).join('')}
         </div>
       </article>
@@ -1773,7 +1795,7 @@ function renderList() {
           ${detailDescription}
           <dl>
             <dt>${t.detail.address}</dt><dd>${shop.address}</dd>
-            <dt>${t.detail.recommendation}</dt><dd>${shop.menu}</dd>
+            <dt>${t.detail.recommendation}</dt><dd>${detailMenu}</dd>
             <dt>${t.detail.area}</dt><dd>${shop.area}</dd>
             <dt>${t.detail.hours}</dt><dd>${shop.hours}</dd>
           </dl>
